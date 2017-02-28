@@ -384,6 +384,29 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 
 	/**
+	 * サービスクラスの一覧を取得します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+	 * @return 結果
+	 */
+	public DescribeServiceClassResult describeServiceClass(DescribeServiceClassRequest request) {
+	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/serviceClass";
+
+
+
+		HttpGet get = createHttpGet(
+				url,
+				credential,
+				ENDPOINT,
+				DescribeServiceClassRequest.Constant.MODULE,
+				DescribeServiceClassRequest.Constant.FUNCTION);
+
+		return doRequest(get, DescribeServiceClassResult.class);
+	}
+
+
+	/**
 	 * インベントリのアイテムを消費します<br>
 	 * <br>
 	 *
