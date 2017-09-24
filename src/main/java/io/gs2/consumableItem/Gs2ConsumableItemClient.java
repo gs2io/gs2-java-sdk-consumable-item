@@ -162,6 +162,29 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 
 	/**
+	 * 消費型アイテムを更新します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+	 * @return 結果
+	 */
+	public UpdateItemResult updateItem(UpdateItemRequest request) {
+		ObjectNode body = JsonNodeFactory.instance.objectNode();
+
+        if(request.getMax() != null) body.put("max", request.getMax());
+		HttpPut put = createHttpPut(
+				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null ? "null" : request.getItemPoolName()) + "/item/" + (request.getItemName() == null ? "null" : request.getItemName()) + "",
+				credential,
+				ENDPOINT,
+				UpdateItemRequest.Constant.MODULE,
+				UpdateItemRequest.Constant.FUNCTION,
+				body.toString());
+
+		return doRequest(put, UpdateItemResult.class);
+	}
+
+
+	/**
 	 * 消費型アイテムを取得します<br>
 	 * <br>
 	 *
