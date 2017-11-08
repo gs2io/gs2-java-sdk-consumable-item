@@ -16,6 +16,8 @@
 
 package io.gs2.consumableItem.control;
 
+import org.json.JSONObject;
+import java.util.List;
 import io.gs2.consumableItem.Gs2ConsumableItem;
 import io.gs2.control.Gs2BasicRequest;
 
@@ -30,7 +32,7 @@ public class GetItemPoolStatusRequest extends Gs2BasicRequest<GetItemPoolStatusR
 	}
 
 	/** 状態を取得する消費型アイテムプールの名前 */
-	String itemPoolName;
+	private String itemPoolName;
 
 
 	/**

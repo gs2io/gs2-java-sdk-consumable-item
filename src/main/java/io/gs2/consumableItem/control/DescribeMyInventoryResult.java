@@ -16,12 +16,10 @@
 
 package io.gs2.consumableItem.control;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import org.json.JSONObject;
 import java.util.List;
-
-import io.gs2.consumableItem.model.Inventory;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.gs2.consumableItem.model.*;
 
 /**
  * @author Game Server Services, Inc.
@@ -30,10 +28,10 @@ import io.gs2.consumableItem.model.Inventory;
 public class DescribeMyInventoryResult {
 
 	/** 次のページを読み込むためのトークン */
-	String nextPageToken;
+	private String nextPageToken;
 
 	/** 所持品 */
-	List<Inventory> items;
+	private List<Inventory> items;
 
 
 	/**

@@ -16,6 +16,8 @@
 
 package io.gs2.consumableItem.control;
 
+import org.json.JSONObject;
+import java.util.List;
 import io.gs2.consumableItem.Gs2ConsumableItem;
 import io.gs2.control.Gs2BasicRequest;
 
@@ -30,10 +32,10 @@ public class DeleteItemRequest extends Gs2BasicRequest<DeleteItemRequest> {
 	}
 
 	/** 消費型アイテムプールの名前 */
-	String itemPoolName;
+	private String itemPoolName;
 
 	/** 消費型アイテムの名前 */
-	String itemName;
+	private String itemName;
 
 
 	/**

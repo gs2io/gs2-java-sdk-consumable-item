@@ -16,6 +16,8 @@
 
 package io.gs2.consumableItem.control;
 
+import org.json.JSONObject;
+import java.util.List;
 import io.gs2.consumableItem.Gs2ConsumableItem;
 import io.gs2.control.Gs2UserRequest;
 
@@ -30,13 +32,13 @@ public class ConsumeMyInventoryRequest extends Gs2UserRequest<ConsumeMyInventory
 	}
 
 	/** 消費型アイテムプールの名前 */
-	String itemPoolName;
+	private String itemPoolName;
 
 	/** 消費型アイテムの名前 */
-	String itemName;
+	private String itemName;
 
 	/** 消費数量 */
-	Integer count;
+	private Integer count;
 
 
 	/**

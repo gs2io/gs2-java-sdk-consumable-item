@@ -16,10 +16,10 @@
 
 package io.gs2.consumableItem.control;
 
+import org.json.JSONObject;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import io.gs2.consumableItem.model.Item;
-
+import io.gs2.consumableItem.model.*;
 
 /**
  * @author Game Server Services, Inc.
@@ -28,7 +28,7 @@ import io.gs2.consumableItem.model.Item;
 public class UpdateItemResult {
 
 	/** 消費型アイテム */
-	Item item;
+	private Item item;
 
 
 	/**

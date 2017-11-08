@@ -16,6 +16,8 @@
 
 package io.gs2.consumableItem.control;
 
+import org.json.JSONObject;
+import java.util.List;
 import io.gs2.consumableItem.Gs2ConsumableItem;
 import io.gs2.control.Gs2BasicRequest;
 
@@ -30,14 +32,13 @@ public class CreateItemRequest extends Gs2BasicRequest<CreateItemRequest> {
 	}
 
 	/** 消費型アイテムプールの名前 */
-	String itemPoolName;
+	private String itemPoolName;
 
-	/** 最大所持数。
-0を指定するか省略すると制限無しで所持可能 */
-	Integer max;
+	/** 最大所持数。 */
+	private Integer max;
 
 	/** 消費型アイテム名 */
-	String name;
+	private String name;
 
 
 	/**
@@ -70,33 +71,27 @@ public class CreateItemRequest extends Gs2BasicRequest<CreateItemRequest> {
 	}
 
 	/**
-	 * 最大所持数。
-0を指定するか省略すると制限無しで所持可能を取得
+	 * 最大所持数。を取得
 	 *
 	 * @return 最大所持数。
-0を指定するか省略すると制限無しで所持可能
 	 */
 	public Integer getMax() {
 		return max;
 	}
 
 	/**
-	 * 最大所持数。
-0を指定するか省略すると制限無しで所持可能を設定
+	 * 最大所持数。を設定
 	 *
 	 * @param max 最大所持数。
-0を指定するか省略すると制限無しで所持可能
 	 */
 	public void setMax(Integer max) {
 		this.max = max;
 	}
 
 	/**
-	 * 最大所持数。
-0を指定するか省略すると制限無しで所持可能を設定
+	 * 最大所持数。を設定
 	 *
 	 * @param max 最大所持数。
-0を指定するか省略すると制限無しで所持可能
 	 * @return this
 	 */
 	public CreateItemRequest withMax(Integer max) {

@@ -16,10 +16,10 @@
 
 package io.gs2.consumableItem.control;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import org.json.JSONObject;
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.gs2.consumableItem.model.*;
 
 /**
  * @author Game Server Services, Inc.
@@ -28,7 +28,7 @@ import java.util.List;
 public class DescribeServiceClassResult {
 
 	/** サービスクラス一覧 */
-	List<String> items;
+	private List<String> items;
 
 
 	/**

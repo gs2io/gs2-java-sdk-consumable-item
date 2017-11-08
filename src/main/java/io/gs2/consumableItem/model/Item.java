@@ -16,6 +16,7 @@
 
 package io.gs2.consumableItem.model;
 
+import java.util.List;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -30,22 +31,22 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Item implements Serializable {
 
 	/** 消費型アイテムID */
-	String itemId;
+	private String itemId;
 
 	/** 作成日時(エポック秒) */
-	Integer createAt;
+	private Integer createAt;
 
 	/** 消費型アイテム名 */
-	String name;
+	private String name;
 
 	/** 所持数の上限 */
-	Integer max;
+	private Integer max;
 
 	/** 消費型アイテムプールID */
-	String itemPoolId;
+	private String itemPoolId;
 
 	/** 最終更新日時(エポック秒) */
-	Integer updateAt;
+	private Integer updateAt;
 
 
 	/**

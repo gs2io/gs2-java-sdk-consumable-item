@@ -16,6 +16,8 @@
 
 package io.gs2.consumableItem.control;
 
+import org.json.JSONObject;
+import java.util.List;
 import io.gs2.consumableItem.Gs2ConsumableItem;
 import io.gs2.control.Gs2BasicRequest;
 
@@ -30,13 +32,13 @@ public class CreateItemPoolRequest extends Gs2BasicRequest<CreateItemPoolRequest
 	}
 
 	/** サービスクラス */
-	String serviceClass;
+	private String serviceClass;
 
 	/** 仮想通貨名 */
-	String name;
+	private String name;
 
 	/** 説明文(1024文字以内) */
-	String description;
+	private String description;
 
 
 	/**
