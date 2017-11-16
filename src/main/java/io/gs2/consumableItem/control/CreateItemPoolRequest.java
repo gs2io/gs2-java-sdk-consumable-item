@@ -31,15 +31,143 @@ public class CreateItemPoolRequest extends Gs2BasicRequest<CreateItemPoolRequest
 		public static final String FUNCTION = "CreateItemPool";
 	}
 
-	/** サービスクラス */
-	private String serviceClass;
+	/** アイテム入手完了時 に実行されるGS2-Script */
+	private String acquisitionInventoryDoneTriggerScript;
 
 	/** 仮想通貨名 */
 	private String name;
 
+	/** アイテム入手時 に実行されるGS2-Script */
+	private String acquisitionInventoryTriggerScript;
+
+	/** アイテム消費完了時 に実行されるGS2-Script */
+	private String consumeInventoryDoneTriggerScript;
+
+	/** サービスクラス */
+	private String serviceClass;
+
+	/** アイテム消費時 に実行されるGS2-Script */
+	private String consumeInventoryTriggerScript;
+
 	/** 説明文(1024文字以内) */
 	private String description;
 
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム入手完了時 に実行されるGS2-Script
+	 */
+	public String getAcquisitionInventoryDoneTriggerScript() {
+		return acquisitionInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 */
+	public void setAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
+		this.acquisitionInventoryDoneTriggerScript = acquisitionInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateItemPoolRequest withAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
+		setAcquisitionInventoryDoneTriggerScript(acquisitionInventoryDoneTriggerScript);
+		return this;
+	}
+
+	/**
+	 * 仮想通貨名を取得
+	 *
+	 * @return 仮想通貨名
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * 仮想通貨名を設定
+	 *
+	 * @param name 仮想通貨名
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * 仮想通貨名を設定
+	 *
+	 * @param name 仮想通貨名
+	 * @return this
+	 */
+	public CreateItemPoolRequest withName(String name) {
+		setName(name);
+		return this;
+	}
+
+	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム入手時 に実行されるGS2-Script
+	 */
+	public String getAcquisitionInventoryTriggerScript() {
+		return acquisitionInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryTriggerScript アイテム入手時 に実行されるGS2-Script
+	 */
+	public void setAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
+		this.acquisitionInventoryTriggerScript = acquisitionInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryTriggerScript アイテム入手時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateItemPoolRequest withAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
+		setAcquisitionInventoryTriggerScript(acquisitionInventoryTriggerScript);
+		return this;
+	}
+
+	/**
+	 * アイテム消費完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム消費完了時 に実行されるGS2-Script
+	 */
+	public String getConsumeInventoryDoneTriggerScript() {
+		return consumeInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
+	 */
+	public void setConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
+		this.consumeInventoryDoneTriggerScript = consumeInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateItemPoolRequest withConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
+		setConsumeInventoryDoneTriggerScript(consumeInventoryDoneTriggerScript);
+		return this;
+	}
 
 	/**
 	 * サービスクラスを取得
@@ -71,31 +199,31 @@ public class CreateItemPoolRequest extends Gs2BasicRequest<CreateItemPoolRequest
 	}
 
 	/**
-	 * 仮想通貨名を取得
+	 * アイテム消費時 に実行されるGS2-Scriptを取得
 	 *
-	 * @return 仮想通貨名
+	 * @return アイテム消費時 に実行されるGS2-Script
 	 */
-	public String getName() {
-		return name;
+	public String getConsumeInventoryTriggerScript() {
+		return consumeInventoryTriggerScript;
 	}
 
 	/**
-	 * 仮想通貨名を設定
+	 * アイテム消費時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param name 仮想通貨名
+	 * @param consumeInventoryTriggerScript アイテム消費時 に実行されるGS2-Script
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setConsumeInventoryTriggerScript(String consumeInventoryTriggerScript) {
+		this.consumeInventoryTriggerScript = consumeInventoryTriggerScript;
 	}
 
 	/**
-	 * 仮想通貨名を設定
+	 * アイテム消費時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param name 仮想通貨名
+	 * @param consumeInventoryTriggerScript アイテム消費時 に実行されるGS2-Script
 	 * @return this
 	 */
-	public CreateItemPoolRequest withName(String name) {
-		setName(name);
+	public CreateItemPoolRequest withConsumeInventoryTriggerScript(String consumeInventoryTriggerScript) {
+		setConsumeInventoryTriggerScript(consumeInventoryTriggerScript);
 		return this;
 	}
 

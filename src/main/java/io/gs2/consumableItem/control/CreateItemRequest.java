@@ -34,11 +34,23 @@ public class CreateItemRequest extends Gs2BasicRequest<CreateItemRequest> {
 	/** 消費型アイテムプールの名前 */
 	private String itemPoolName;
 
-	/** 最大所持数。 */
-	private Integer max;
+	/** アイテム入手完了時 に実行されるGS2-Script */
+	private String acquisitionInventoryDoneTriggerScript;
 
 	/** 消費型アイテム名 */
 	private String name;
+
+	/** アイテム入手時 に実行されるGS2-Script */
+	private String acquisitionInventoryTriggerScript;
+
+	/** 最大所持数。 */
+	private Integer max;
+
+	/** アイテム消費完了時 に実行されるGS2-Script */
+	private String consumeInventoryDoneTriggerScript;
+
+	/** アイテム消費時 に実行されるGS2-Script */
+	private String consumeInventoryTriggerScript;
 
 
 	/**
@@ -67,6 +79,93 @@ public class CreateItemRequest extends Gs2BasicRequest<CreateItemRequest> {
 	 */
 	public CreateItemRequest withItemPoolName(String itemPoolName) {
 		setItemPoolName(itemPoolName);
+		return this;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム入手完了時 に実行されるGS2-Script
+	 */
+	public String getAcquisitionInventoryDoneTriggerScript() {
+		return acquisitionInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 */
+	public void setAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
+		this.acquisitionInventoryDoneTriggerScript = acquisitionInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateItemRequest withAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
+		setAcquisitionInventoryDoneTriggerScript(acquisitionInventoryDoneTriggerScript);
+		return this;
+	}
+
+	/**
+	 * 消費型アイテム名を取得
+	 *
+	 * @return 消費型アイテム名
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * 消費型アイテム名を設定
+	 *
+	 * @param name 消費型アイテム名
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * 消費型アイテム名を設定
+	 *
+	 * @param name 消費型アイテム名
+	 * @return this
+	 */
+	public CreateItemRequest withName(String name) {
+		setName(name);
+		return this;
+	}
+
+	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム入手時 に実行されるGS2-Script
+	 */
+	public String getAcquisitionInventoryTriggerScript() {
+		return acquisitionInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryTriggerScript アイテム入手時 に実行されるGS2-Script
+	 */
+	public void setAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
+		this.acquisitionInventoryTriggerScript = acquisitionInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryTriggerScript アイテム入手時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateItemRequest withAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
+		setAcquisitionInventoryTriggerScript(acquisitionInventoryTriggerScript);
 		return this;
 	}
 
@@ -100,31 +199,60 @@ public class CreateItemRequest extends Gs2BasicRequest<CreateItemRequest> {
 	}
 
 	/**
-	 * 消費型アイテム名を取得
+	 * アイテム消費完了時 に実行されるGS2-Scriptを取得
 	 *
-	 * @return 消費型アイテム名
+	 * @return アイテム消費完了時 に実行されるGS2-Script
 	 */
-	public String getName() {
-		return name;
+	public String getConsumeInventoryDoneTriggerScript() {
+		return consumeInventoryDoneTriggerScript;
 	}
 
 	/**
-	 * 消費型アイテム名を設定
+	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param name 消費型アイテム名
+	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
+		this.consumeInventoryDoneTriggerScript = consumeInventoryDoneTriggerScript;
 	}
 
 	/**
-	 * 消費型アイテム名を設定
+	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param name 消費型アイテム名
+	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
 	 * @return this
 	 */
-	public CreateItemRequest withName(String name) {
-		setName(name);
+	public CreateItemRequest withConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
+		setConsumeInventoryDoneTriggerScript(consumeInventoryDoneTriggerScript);
+		return this;
+	}
+
+	/**
+	 * アイテム消費時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム消費時 に実行されるGS2-Script
+	 */
+	public String getConsumeInventoryTriggerScript() {
+		return consumeInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム消費時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param consumeInventoryTriggerScript アイテム消費時 に実行されるGS2-Script
+	 */
+	public void setConsumeInventoryTriggerScript(String consumeInventoryTriggerScript) {
+		this.consumeInventoryTriggerScript = consumeInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム消費時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param consumeInventoryTriggerScript アイテム消費時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateItemRequest withConsumeInventoryTriggerScript(String consumeInventoryTriggerScript) {
+		setConsumeInventoryTriggerScript(consumeInventoryTriggerScript);
 		return this;
 	}
 

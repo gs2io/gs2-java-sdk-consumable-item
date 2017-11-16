@@ -30,14 +30,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class ItemPool implements Serializable {
 
-	/** 作成日時(エポック秒) */
-	private Integer createAt;
+	/** アイテム入手完了時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+ */
+	private String acquisitionInventoryDoneTriggerScript;
 
 	/** 消費型アイテムプール名 */
 	private String name;
-
-	/** オーナーID */
-	private String ownerId;
 
 	/** 消費型アイテムプールID */
 	private String itemPoolId;
@@ -45,29 +44,58 @@ public class ItemPool implements Serializable {
 	/** サービスクラス */
 	private String serviceClass;
 
+	/** アイテム入手時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+ */
+	private String acquisitionInventoryTriggerScript;
+
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
+
+	/** オーナーID */
+	private String ownerId;
+
 	/** 最終更新日時(エポック秒) */
 	private Integer updateAt;
+
+	/** アイテム消費完了時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+ */
+	private String consumeInventoryDoneTriggerScript;
+
+	/** アイテム消費時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+ */
+	private String consumeInventoryTriggerScript;
 
 	/** 説明文 */
 	private String description;
 
 
 	/**
-	 * 作成日時(エポック秒)を取得
+	 * アイテム入手完了時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+を取得
 	 *
-	 * @return 作成日時(エポック秒)
+	 * @return アイテム入手完了時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+
 	 */
-	public Integer getCreateAt() {
-		return createAt;
+	public String getAcquisitionInventoryDoneTriggerScript() {
+		return acquisitionInventoryDoneTriggerScript;
 	}
 
 	/**
-	 * 作成日時(エポック秒)を設定
+	 * アイテム入手完了時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+を設定
 	 *
-	 * @param createAt 作成日時(エポック秒)
+	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+
 	 */
-	public void setCreateAt(Integer createAt) {
-		this.createAt = createAt;
+	public void setAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
+		this.acquisitionInventoryDoneTriggerScript = acquisitionInventoryDoneTriggerScript;
 	}
 
 	/**
@@ -86,24 +114,6 @@ public class ItemPool implements Serializable {
 	 */
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	/**
-	 * オーナーIDを取得
-	 *
-	 * @return オーナーID
-	 */
-	public String getOwnerId() {
-		return ownerId;
-	}
-
-	/**
-	 * オーナーIDを設定
-	 *
-	 * @param ownerId オーナーID
-	 */
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
 	}
 
 	/**
@@ -143,6 +153,68 @@ public class ItemPool implements Serializable {
 	}
 
 	/**
+	 * アイテム入手時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+を取得
+	 *
+	 * @return アイテム入手時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+
+	 */
+	public String getAcquisitionInventoryTriggerScript() {
+		return acquisitionInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム入手時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+を設定
+	 *
+	 * @param acquisitionInventoryTriggerScript アイテム入手時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+
+	 */
+	public void setAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
+		this.acquisitionInventoryTriggerScript = acquisitionInventoryTriggerScript;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を取得
+	 *
+	 * @return 作成日時(エポック秒)
+	 */
+	public Integer getCreateAt() {
+		return createAt;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 */
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
+	}
+
+	/**
+	 * オーナーIDを取得
+	 *
+	 * @return オーナーID
+	 */
+	public String getOwnerId() {
+		return ownerId;
+	}
+
+	/**
+	 * オーナーIDを設定
+	 *
+	 * @param ownerId オーナーID
+	 */
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
+	}
+
+	/**
 	 * 最終更新日時(エポック秒)を取得
 	 *
 	 * @return 最終更新日時(エポック秒)
@@ -158,6 +230,58 @@ public class ItemPool implements Serializable {
 	 */
 	public void setUpdateAt(Integer updateAt) {
 		this.updateAt = updateAt;
+	}
+
+	/**
+	 * アイテム消費完了時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+を取得
+	 *
+	 * @return アイテム消費完了時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+
+	 */
+	public String getConsumeInventoryDoneTriggerScript() {
+		return consumeInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム消費完了時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+を設定
+	 *
+	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+
+	 */
+	public void setConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
+		this.consumeInventoryDoneTriggerScript = consumeInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム消費時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+を取得
+	 *
+	 * @return アイテム消費時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+
+	 */
+	public String getConsumeInventoryTriggerScript() {
+		return consumeInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム消費時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+を設定
+	 *
+	 * @param consumeInventoryTriggerScript アイテム消費時 に実行されるGS2-Script
+Item に設定がある場合はそちらが優先されます
+
+	 */
+	public void setConsumeInventoryTriggerScript(String consumeInventoryTriggerScript) {
+		this.consumeInventoryTriggerScript = consumeInventoryTriggerScript;
 	}
 
 	/**

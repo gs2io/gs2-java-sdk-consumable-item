@@ -33,8 +33,8 @@ public class Item implements Serializable {
 	/** 消費型アイテムID */
 	private String itemId;
 
-	/** 作成日時(エポック秒) */
-	private Integer createAt;
+	/** アイテム入手完了時 に実行されるGS2-Script */
+	private String acquisitionInventoryDoneTriggerScript;
 
 	/** 消費型アイテム名 */
 	private String name;
@@ -45,8 +45,20 @@ public class Item implements Serializable {
 	/** 消費型アイテムプールID */
 	private String itemPoolId;
 
+	/** アイテム入手時 に実行されるGS2-Script */
+	private String acquisitionInventoryTriggerScript;
+
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
+
 	/** 最終更新日時(エポック秒) */
 	private Integer updateAt;
+
+	/** アイテム消費完了時 に実行されるGS2-Script */
+	private String consumeInventoryDoneTriggerScript;
+
+	/** アイテム消費時 に実行されるGS2-Script */
+	private String consumeInventoryTriggerScript;
 
 
 	/**
@@ -68,21 +80,21 @@ public class Item implements Serializable {
 	}
 
 	/**
-	 * 作成日時(エポック秒)を取得
+	 * アイテム入手完了時 に実行されるGS2-Scriptを取得
 	 *
-	 * @return 作成日時(エポック秒)
+	 * @return アイテム入手完了時 に実行されるGS2-Script
 	 */
-	public Integer getCreateAt() {
-		return createAt;
+	public String getAcquisitionInventoryDoneTriggerScript() {
+		return acquisitionInventoryDoneTriggerScript;
 	}
 
 	/**
-	 * 作成日時(エポック秒)を設定
+	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param createAt 作成日時(エポック秒)
+	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
 	 */
-	public void setCreateAt(Integer createAt) {
-		this.createAt = createAt;
+	public void setAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
+		this.acquisitionInventoryDoneTriggerScript = acquisitionInventoryDoneTriggerScript;
 	}
 
 	/**
@@ -140,6 +152,42 @@ public class Item implements Serializable {
 	}
 
 	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム入手時 に実行されるGS2-Script
+	 */
+	public String getAcquisitionInventoryTriggerScript() {
+		return acquisitionInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryTriggerScript アイテム入手時 に実行されるGS2-Script
+	 */
+	public void setAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
+		this.acquisitionInventoryTriggerScript = acquisitionInventoryTriggerScript;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を取得
+	 *
+	 * @return 作成日時(エポック秒)
+	 */
+	public Integer getCreateAt() {
+		return createAt;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 */
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
+	}
+
+	/**
 	 * 最終更新日時(エポック秒)を取得
 	 *
 	 * @return 最終更新日時(エポック秒)
@@ -155,6 +203,42 @@ public class Item implements Serializable {
 	 */
 	public void setUpdateAt(Integer updateAt) {
 		this.updateAt = updateAt;
+	}
+
+	/**
+	 * アイテム消費完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム消費完了時 に実行されるGS2-Script
+	 */
+	public String getConsumeInventoryDoneTriggerScript() {
+		return consumeInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
+	 */
+	public void setConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
+		this.consumeInventoryDoneTriggerScript = consumeInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム消費時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム消費時 に実行されるGS2-Script
+	 */
+	public String getConsumeInventoryTriggerScript() {
+		return consumeInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム消費時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param consumeInventoryTriggerScript アイテム消費時 に実行されるGS2-Script
+	 */
+	public void setConsumeInventoryTriggerScript(String consumeInventoryTriggerScript) {
+		this.consumeInventoryTriggerScript = consumeInventoryTriggerScript;
 	}
 
 }

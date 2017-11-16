@@ -67,7 +67,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public AcquisitionInventoryResult acquisitionInventory(AcquisitionInventoryRequest request) {
@@ -100,7 +102,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public AcquisitionMyInventoryResult acquisitionMyInventory(AcquisitionMyInventoryRequest request) {
@@ -128,7 +132,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public ConsumeInventoryResult consumeInventory(ConsumeInventoryRequest request) {
@@ -155,7 +161,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public ConsumeMyInventoryResult consumeMyInventory(ConsumeMyInventoryRequest request) {
@@ -183,15 +191,21 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public CreateItemResult createItem(CreateItemRequest request) {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("max", request.getMax())
-				.put("name", request.getName());
+				.put("name", request.getName())
+				.put("max", request.getMax());
 
+        if(request.getAcquisitionInventoryDoneTriggerScript() != null) body.put("acquisitionInventoryDoneTriggerScript", request.getAcquisitionInventoryDoneTriggerScript());
+        if(request.getAcquisitionInventoryTriggerScript() != null) body.put("acquisitionInventoryTriggerScript", request.getAcquisitionInventoryTriggerScript());
+        if(request.getConsumeInventoryDoneTriggerScript() != null) body.put("consumeInventoryDoneTriggerScript", request.getConsumeInventoryDoneTriggerScript());
+        if(request.getConsumeInventoryTriggerScript() != null) body.put("consumeInventoryTriggerScript", request.getConsumeInventoryTriggerScript());
 		HttpPost post = createHttpPost(
 				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null ? "null" : request.getItemPoolName()) + "/item",
 				credential,
@@ -211,16 +225,22 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public CreateItemPoolResult createItemPool(CreateItemPoolRequest request) {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("serviceClass", request.getServiceClass())
 				.put("name", request.getName())
+				.put("serviceClass", request.getServiceClass())
 				.put("description", request.getDescription());
 
+        if(request.getAcquisitionInventoryDoneTriggerScript() != null) body.put("acquisitionInventoryDoneTriggerScript", request.getAcquisitionInventoryDoneTriggerScript());
+        if(request.getAcquisitionInventoryTriggerScript() != null) body.put("acquisitionInventoryTriggerScript", request.getAcquisitionInventoryTriggerScript());
+        if(request.getConsumeInventoryDoneTriggerScript() != null) body.put("consumeInventoryDoneTriggerScript", request.getConsumeInventoryDoneTriggerScript());
+        if(request.getConsumeInventoryTriggerScript() != null) body.put("consumeInventoryTriggerScript", request.getConsumeInventoryTriggerScript());
 		HttpPost post = createHttpPost(
 				Gs2Constant.ENDPOINT_HOST + "/itemPool",
 				credential,
@@ -240,6 +260,7 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 */
 
 	public void deleteInventory(DeleteInventoryRequest request) {
@@ -271,6 +292,7 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 */
 
 	public void deleteItem(DeleteItemRequest request) {
@@ -297,6 +319,7 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 */
 
 	public void deleteItemPool(DeleteItemPoolRequest request) {
@@ -323,7 +346,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public DescribeInventoryResult describeInventory(DescribeInventoryRequest request) {
@@ -356,7 +381,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public DescribeItemResult describeItem(DescribeItemRequest request) {
@@ -389,7 +416,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public DescribeItemPoolResult describeItemPool(DescribeItemPoolRequest request) {
@@ -422,7 +451,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public DescribeMyInventoryResult describeMyInventory(DescribeMyInventoryRequest request) {
@@ -456,7 +487,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public DescribeServiceClassResult describeServiceClass(DescribeServiceClassRequest request) {
@@ -483,7 +516,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetInventoryResult getInventory(GetInventoryRequest request) {
@@ -510,7 +545,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetItemResult getItem(GetItemRequest request) {
@@ -537,7 +574,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetItemPoolResult getItemPool(GetItemPoolRequest request) {
@@ -564,7 +603,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetItemPoolStatusResult getItemPoolStatus(GetItemPoolStatusRequest request) {
@@ -591,7 +632,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public GetMyInventoryResult getMyInventory(GetMyInventoryRequest request) {
@@ -619,7 +662,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public UpdateItemResult updateItem(UpdateItemRequest request) {
@@ -627,6 +672,10 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
 				.put("max", request.getMax());
 
+        if(request.getConsumeInventoryDoneTriggerScript() != null) body.put("consumeInventoryDoneTriggerScript", request.getConsumeInventoryDoneTriggerScript());
+        if(request.getAcquisitionInventoryTriggerScript() != null) body.put("acquisitionInventoryTriggerScript", request.getAcquisitionInventoryTriggerScript());
+        if(request.getConsumeInventoryTriggerScript() != null) body.put("consumeInventoryTriggerScript", request.getConsumeInventoryTriggerScript());
+        if(request.getAcquisitionInventoryDoneTriggerScript() != null) body.put("acquisitionInventoryDoneTriggerScript", request.getAcquisitionInventoryDoneTriggerScript());
 		HttpPut put = createHttpPut(
 				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null ? "null" : request.getItemPoolName()) + "/item/" + (request.getItemName() == null ? "null" : request.getItemName()) + "",
 				credential,
@@ -646,15 +695,21 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
+
 	 * @return 結果
+
 	 */
 
 	public UpdateItemPoolResult updateItemPool(UpdateItemPoolRequest request) {
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("serviceClass", request.getServiceClass())
-				.put("description", request.getDescription());
+				.put("description", request.getDescription())
+				.put("serviceClass", request.getServiceClass());
 
+        if(request.getAcquisitionInventoryDoneTriggerScript() != null) body.put("acquisitionInventoryDoneTriggerScript", request.getAcquisitionInventoryDoneTriggerScript());
+        if(request.getAcquisitionInventoryTriggerScript() != null) body.put("acquisitionInventoryTriggerScript", request.getAcquisitionInventoryTriggerScript());
+        if(request.getConsumeInventoryDoneTriggerScript() != null) body.put("consumeInventoryDoneTriggerScript", request.getConsumeInventoryDoneTriggerScript());
+        if(request.getConsumeInventoryTriggerScript() != null) body.put("consumeInventoryTriggerScript", request.getConsumeInventoryTriggerScript());
 		HttpPut put = createHttpPut(
 				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null ? "null" : request.getItemPoolName()) + "",
 				credential,
