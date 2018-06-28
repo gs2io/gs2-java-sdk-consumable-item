@@ -18,7 +18,9 @@ package io.gs2.consumableItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import io.gs2.model.Region;
 import io.gs2.util.EncodingUtil;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpDelete;
@@ -53,6 +55,26 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	 */
 	public Gs2ConsumableItemClient(IGs2Credential credential) {
 		super(credential);
+	}
+
+	/**
+	 * コンストラクタ。
+	 *
+	 * @param credential 認証情報
+	 * @param region リージョン
+	 */
+	public Gs2ConsumableItemClient(IGs2Credential credential, Region region) {
+		super(credential, region);
+	}
+
+	/**
+	 * コンストラクタ。
+	 *
+	 * @param credential 認証情報
+	 * @param region リージョン
+	 */
+	public Gs2ConsumableItemClient(IGs2Credential credential, String region) {
+		super(credential, region);
 	}
 
 
@@ -90,6 +112,41 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 
 		return doRequest(post, AcquisitionInventoryResult.class);
+
+	}
+
+
+	/**
+	 * スタンプシートを使用してインベントリにアイテムを加えます<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public AcquisitionInventoryByStampSheetResult acquisitionInventoryByStampSheet(AcquisitionInventoryByStampSheetRequest request) {
+
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+				.put("sheet", request.getSheet())
+				.put("keyName", request.getKeyName());
+        if(request.getMaxValue() != null) body.put("maxValue", request.getMaxValue());
+
+		HttpPost post = createHttpPost(
+				Gs2Constant.ENDPOINT_HOST + "/item",
+				credential,
+				ENDPOINT,
+				AcquisitionInventoryByStampSheetRequest.Constant.MODULE,
+				AcquisitionInventoryByStampSheetRequest.Constant.FUNCTION,
+				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+        post.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
+
+		return doRequest(post, AcquisitionInventoryByStampSheetResult.class);
 
 	}
 
@@ -147,7 +204,6 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
 				.put("count", request.getCount());
-
 		HttpPut put = createHttpPut(
 				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "/user/" + (request.getUserId() == null || request.getUserId().equals("") ? "null" : request.getUserId()) + "",
 				credential,
@@ -166,6 +222,40 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 
 	/**
+	 * スタンプタスクを使用してインベントリのアイテムを消費します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public ConsumeInventoryByStampTaskResult consumeInventoryByStampTask(ConsumeInventoryByStampTaskRequest request) {
+
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+				.put("task", request.getTask())
+				.put("keyName", request.getKeyName())
+				.put("transactionId", request.getTransactionId());
+		HttpPut put = createHttpPut(
+				Gs2Constant.ENDPOINT_HOST + "/item",
+				credential,
+				ENDPOINT,
+				ConsumeInventoryByStampTaskRequest.Constant.MODULE,
+				ConsumeInventoryByStampTaskRequest.Constant.FUNCTION,
+				body.toString());
+        if(request.getRequestId() != null) {
+            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+        put.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
+
+		return doRequest(put, ConsumeInventoryByStampTaskResult.class);
+
+	}
+
+
+	/**
 	 * インベントリのアイテムを消費します<br>
 	 * <br>
 	 *
@@ -179,7 +269,6 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
 				.put("count", request.getCount());
-
 		HttpPut put = createHttpPut(
 				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "/my",
 				credential,
@@ -194,81 +283,6 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
         put.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
 
 		return doRequest(put, ConsumeMyInventoryResult.class);
-
-	}
-
-
-	/**
-	 * 消費型アイテムを新規作成します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public CreateItemResult createItem(CreateItemRequest request) {
-
-		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("name", request.getName())
-				.put("max", request.getMax());
-
-        if(request.getAcquisitionInventoryTriggerScript() != null) body.put("acquisitionInventoryTriggerScript", request.getAcquisitionInventoryTriggerScript());
-        if(request.getAcquisitionInventoryDoneTriggerScript() != null) body.put("acquisitionInventoryDoneTriggerScript", request.getAcquisitionInventoryDoneTriggerScript());
-        if(request.getConsumeInventoryTriggerScript() != null) body.put("consumeInventoryTriggerScript", request.getConsumeInventoryTriggerScript());
-        if(request.getConsumeInventoryDoneTriggerScript() != null) body.put("consumeInventoryDoneTriggerScript", request.getConsumeInventoryDoneTriggerScript());
-		HttpPost post = createHttpPost(
-				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item",
-				credential,
-				ENDPOINT,
-				CreateItemRequest.Constant.MODULE,
-				CreateItemRequest.Constant.FUNCTION,
-				body.toString());
-        if(request.getRequestId() != null) {
-            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(post, CreateItemResult.class);
-
-	}
-
-
-	/**
-	 * 消費型アイテムプールを新規作成します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public CreateItemPoolResult createItemPool(CreateItemPoolRequest request) {
-
-		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("name", request.getName())
-				.put("description", request.getDescription())
-				.put("serviceClass", request.getServiceClass());
-
-        if(request.getAcquisitionInventoryTriggerScript() != null) body.put("acquisitionInventoryTriggerScript", request.getAcquisitionInventoryTriggerScript());
-        if(request.getAcquisitionInventoryDoneTriggerScript() != null) body.put("acquisitionInventoryDoneTriggerScript", request.getAcquisitionInventoryDoneTriggerScript());
-        if(request.getConsumeInventoryTriggerScript() != null) body.put("consumeInventoryTriggerScript", request.getConsumeInventoryTriggerScript());
-        if(request.getConsumeInventoryDoneTriggerScript() != null) body.put("consumeInventoryDoneTriggerScript", request.getConsumeInventoryDoneTriggerScript());
-		HttpPost post = createHttpPost(
-				Gs2Constant.ENDPOINT_HOST + "/itemPool",
-				credential,
-				ENDPOINT,
-				CreateItemPoolRequest.Constant.MODULE,
-				CreateItemPoolRequest.Constant.FUNCTION,
-				body.toString());
-        if(request.getRequestId() != null) {
-            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(post, CreateItemPoolResult.class);
 
 	}
 
@@ -293,71 +307,6 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 				ENDPOINT,
 				DeleteInventoryRequest.Constant.MODULE,
 				DeleteInventoryRequest.Constant.FUNCTION);
-        if(request.getRequestId() != null) {
-            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		doRequest(delete, null);
-
-	}
-
-
-	/**
-	 * 消費型アイテムを削除します<br>
-	 * <br>
-	 * 既にアイテムを所持しているユーザがいる場合、そのアイテムはインベントリから削除されることはありません。<br>
-	 * 消費型アイテムを削除することで新しくアイテムを付与することはできなくなりますが、消費することは出来ます。<br>
-	 * <br>
-	 * これを防ぎたい場合はすべてのユーザのインベントリを走査して該当アイテムを削除する必要があります。<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 */
-
-	public void deleteItem(DeleteItemRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "";
-
-
-
-		HttpDelete delete = createHttpDelete(
-				url,
-				credential,
-				ENDPOINT,
-				DeleteItemRequest.Constant.MODULE,
-				DeleteItemRequest.Constant.FUNCTION);
-        if(request.getRequestId() != null) {
-            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		doRequest(delete, null);
-
-	}
-
-
-	/**
-	 * 消費型アイテムプールを削除します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 */
-
-	public void deleteItemPool(DeleteItemPoolRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "";
-
-
-
-		HttpDelete delete = createHttpDelete(
-				url,
-				credential,
-				ENDPOINT,
-				DeleteItemPoolRequest.Constant.MODULE,
-				DeleteItemPoolRequest.Constant.FUNCTION);
         if(request.getRequestId() != null) {
             delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
         }
@@ -407,7 +356,7 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 
 	/**
-	 * 消費型アイテムの一覧を取得します<br>
+	 * ユーザが所持しているインベントリの一覧を取得します<br>
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
@@ -416,9 +365,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 	 */
 
-	public DescribeItemResult describeItem(DescribeItemRequest request) {
+	public DescribeMyInventoryResult describeMyInventory(DescribeMyInventoryRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/my";
 
         List<NameValuePair> queryString = new ArrayList<>();
         if(request.getPageToken() != null) queryString.add(new BasicNameValuePair("pageToken", String.valueOf(request.getPageToken())));
@@ -432,14 +381,148 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 				url,
 				credential,
 				ENDPOINT,
-				DescribeItemRequest.Constant.MODULE,
-				DescribeItemRequest.Constant.FUNCTION);
+				DescribeMyInventoryRequest.Constant.MODULE,
+				DescribeMyInventoryRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+        get.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
+
+		return doRequest(get, DescribeMyInventoryResult.class);
+
+	}
+
+
+	/**
+	 * インベントリの内容を取得します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public GetInventoryResult getInventory(GetInventoryRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "/user/" + (request.getUserId() == null || request.getUserId().equals("") ? "null" : request.getUserId()) + "";
+
+
+
+		HttpGet get = createHttpGet(
+				url,
+				credential,
+				ENDPOINT,
+				GetInventoryRequest.Constant.MODULE,
+				GetInventoryRequest.Constant.FUNCTION);
         if(request.getRequestId() != null) {
             get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
         }
 
 
-		return doRequest(get, DescribeItemResult.class);
+		return doRequest(get, GetInventoryResult.class);
+
+	}
+
+
+	/**
+	 * インベントリの内容を取得します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public GetMyInventoryResult getMyInventory(GetMyInventoryRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "/my";
+
+
+
+		HttpGet get = createHttpGet(
+				url,
+				credential,
+				ENDPOINT,
+				GetMyInventoryRequest.Constant.MODULE,
+				GetMyInventoryRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+        get.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
+
+		return doRequest(get, GetMyInventoryResult.class);
+
+	}
+
+
+	/**
+	 * 消費型アイテムプールを新規作成します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public CreateItemPoolResult createItemPool(CreateItemPoolRequest request) {
+
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+				.put("name", request.getName())
+				.put("serviceClass", request.getServiceClass());
+        if(request.getDescription() != null) body.put("description", request.getDescription());
+        if(request.getAcquisitionInventoryTriggerScript() != null) body.put("acquisitionInventoryTriggerScript", request.getAcquisitionInventoryTriggerScript());
+        if(request.getAcquisitionInventoryDoneTriggerScript() != null) body.put("acquisitionInventoryDoneTriggerScript", request.getAcquisitionInventoryDoneTriggerScript());
+        if(request.getConsumeInventoryTriggerScript() != null) body.put("consumeInventoryTriggerScript", request.getConsumeInventoryTriggerScript());
+        if(request.getConsumeInventoryDoneTriggerScript() != null) body.put("consumeInventoryDoneTriggerScript", request.getConsumeInventoryDoneTriggerScript());
+
+		HttpPost post = createHttpPost(
+				Gs2Constant.ENDPOINT_HOST + "/itemPool",
+				credential,
+				ENDPOINT,
+				CreateItemPoolRequest.Constant.MODULE,
+				CreateItemPoolRequest.Constant.FUNCTION,
+				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(post, CreateItemPoolResult.class);
+
+	}
+
+
+	/**
+	 * 消費型アイテムプールを削除します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 */
+
+	public void deleteItemPool(DeleteItemPoolRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "";
+
+
+
+		HttpDelete delete = createHttpDelete(
+				url,
+				credential,
+				ENDPOINT,
+				DeleteItemPoolRequest.Constant.MODULE,
+				DeleteItemPoolRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		doRequest(delete, null);
 
 	}
 
@@ -483,45 +566,6 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 
 	/**
-	 * ユーザが所持しているインベントリの一覧を取得します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public DescribeMyInventoryResult describeMyInventory(DescribeMyInventoryRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/my";
-
-        List<NameValuePair> queryString = new ArrayList<>();
-        if(request.getPageToken() != null) queryString.add(new BasicNameValuePair("pageToken", String.valueOf(request.getPageToken())));
-        if(request.getLimit() != null) queryString.add(new BasicNameValuePair("limit", String.valueOf(request.getLimit())));
-
-
-		if(queryString.size() > 0) {
-			url += "?" + URLEncodedUtils.format(queryString, "UTF-8");
-		}
-		HttpGet get = createHttpGet(
-				url,
-				credential,
-				ENDPOINT,
-				DescribeMyInventoryRequest.Constant.MODULE,
-				DescribeMyInventoryRequest.Constant.FUNCTION);
-        if(request.getRequestId() != null) {
-            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-        get.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
-
-		return doRequest(get, DescribeMyInventoryResult.class);
-
-	}
-
-
-	/**
 	 * サービスクラスの一覧を取得します<br>
 	 * <br>
 	 *
@@ -549,70 +593,6 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 
 		return doRequest(get, DescribeServiceClassResult.class);
-
-	}
-
-
-	/**
-	 * インベントリの内容を取得します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public GetInventoryResult getInventory(GetInventoryRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "/user/" + (request.getUserId() == null || request.getUserId().equals("") ? "null" : request.getUserId()) + "";
-
-
-
-		HttpGet get = createHttpGet(
-				url,
-				credential,
-				ENDPOINT,
-				GetInventoryRequest.Constant.MODULE,
-				GetInventoryRequest.Constant.FUNCTION);
-        if(request.getRequestId() != null) {
-            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(get, GetInventoryResult.class);
-
-	}
-
-
-	/**
-	 * 消費型アイテムを取得します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public GetItemResult getItem(GetItemRequest request) {
-
-	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "";
-
-
-
-		HttpGet get = createHttpGet(
-				url,
-				credential,
-				ENDPOINT,
-				GetItemRequest.Constant.MODULE,
-				GetItemRequest.Constant.FUNCTION);
-        if(request.getRequestId() != null) {
-            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(get, GetItemResult.class);
 
 	}
 
@@ -682,7 +662,7 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 
 	/**
-	 * インベントリの内容を取得します<br>
+	 * 消費型アイテムプールを更新します<br>
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
@@ -691,9 +671,155 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 	 */
 
-	public GetMyInventoryResult getMyInventory(GetMyInventoryRequest request) {
+	public UpdateItemPoolResult updateItemPool(UpdateItemPoolRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "/my";
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+				.put("serviceClass", request.getServiceClass());
+        if(request.getDescription() != null) body.put("description", request.getDescription());
+        if(request.getAcquisitionInventoryTriggerScript() != null) body.put("acquisitionInventoryTriggerScript", request.getAcquisitionInventoryTriggerScript());
+        if(request.getAcquisitionInventoryDoneTriggerScript() != null) body.put("acquisitionInventoryDoneTriggerScript", request.getAcquisitionInventoryDoneTriggerScript());
+        if(request.getConsumeInventoryTriggerScript() != null) body.put("consumeInventoryTriggerScript", request.getConsumeInventoryTriggerScript());
+        if(request.getConsumeInventoryDoneTriggerScript() != null) body.put("consumeInventoryDoneTriggerScript", request.getConsumeInventoryDoneTriggerScript());
+		HttpPut put = createHttpPut(
+				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "",
+				credential,
+				ENDPOINT,
+				UpdateItemPoolRequest.Constant.MODULE,
+				UpdateItemPoolRequest.Constant.FUNCTION,
+				body.toString());
+        if(request.getRequestId() != null) {
+            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(put, UpdateItemPoolResult.class);
+
+	}
+
+
+	/**
+	 * 消費型アイテムを新規作成します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public CreateItemResult createItem(CreateItemRequest request) {
+
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+				.put("name", request.getName())
+				.put("max", request.getMax());
+        if(request.getAcquisitionInventoryTriggerScript() != null) body.put("acquisitionInventoryTriggerScript", request.getAcquisitionInventoryTriggerScript());
+        if(request.getAcquisitionInventoryDoneTriggerScript() != null) body.put("acquisitionInventoryDoneTriggerScript", request.getAcquisitionInventoryDoneTriggerScript());
+        if(request.getConsumeInventoryTriggerScript() != null) body.put("consumeInventoryTriggerScript", request.getConsumeInventoryTriggerScript());
+        if(request.getConsumeInventoryDoneTriggerScript() != null) body.put("consumeInventoryDoneTriggerScript", request.getConsumeInventoryDoneTriggerScript());
+
+		HttpPost post = createHttpPost(
+				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item",
+				credential,
+				ENDPOINT,
+				CreateItemRequest.Constant.MODULE,
+				CreateItemRequest.Constant.FUNCTION,
+				body.toString());
+        if(request.getRequestId() != null) {
+            post.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(post, CreateItemResult.class);
+
+	}
+
+
+	/**
+	 * 消費型アイテムを削除します<br>
+	 * <br>
+	 * 既にアイテムを所持しているユーザがいる場合、そのアイテムはインベントリから削除されることはありません。<br>
+	 * 消費型アイテムを削除することで新しくアイテムを付与することはできなくなりますが、消費することは出来ます。<br>
+	 * <br>
+	 * これを防ぎたい場合はすべてのユーザのインベントリを走査して該当アイテムを削除する必要があります。<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 */
+
+	public void deleteItem(DeleteItemRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "";
+
+
+
+		HttpDelete delete = createHttpDelete(
+				url,
+				credential,
+				ENDPOINT,
+				DeleteItemRequest.Constant.MODULE,
+				DeleteItemRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            delete.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		doRequest(delete, null);
+
+	}
+
+
+	/**
+	 * 消費型アイテムの一覧を取得します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public DescribeItemResult describeItem(DescribeItemRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item";
+
+        List<NameValuePair> queryString = new ArrayList<>();
+        if(request.getPageToken() != null) queryString.add(new BasicNameValuePair("pageToken", String.valueOf(request.getPageToken())));
+        if(request.getLimit() != null) queryString.add(new BasicNameValuePair("limit", String.valueOf(request.getLimit())));
+
+
+		if(queryString.size() > 0) {
+			url += "?" + URLEncodedUtils.format(queryString, "UTF-8");
+		}
+		HttpGet get = createHttpGet(
+				url,
+				credential,
+				ENDPOINT,
+				DescribeItemRequest.Constant.MODULE,
+				DescribeItemRequest.Constant.FUNCTION);
+        if(request.getRequestId() != null) {
+            get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
+        }
+
+
+		return doRequest(get, DescribeItemResult.class);
+
+	}
+
+
+	/**
+	 * 消費型アイテムを取得します<br>
+	 * <br>
+	 *
+	 * @param request リクエストパラメータ
+
+	 * @return 結果
+
+	 */
+
+	public GetItemResult getItem(GetItemRequest request) {
+
+	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "";
 
 
 
@@ -701,15 +827,14 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 				url,
 				credential,
 				ENDPOINT,
-				GetMyInventoryRequest.Constant.MODULE,
-				GetMyInventoryRequest.Constant.FUNCTION);
+				GetItemRequest.Constant.MODULE,
+				GetItemRequest.Constant.FUNCTION);
         if(request.getRequestId() != null) {
             get.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
         }
 
-        get.setHeader("X-GS2-ACCESS-TOKEN", request.getAccessToken());
 
-		return doRequest(get, GetMyInventoryResult.class);
+		return doRequest(get, GetItemResult.class);
 
 	}
 
@@ -728,7 +853,6 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
 				.put("max", request.getMax());
-
         if(request.getAcquisitionInventoryTriggerScript() != null) body.put("acquisitionInventoryTriggerScript", request.getAcquisitionInventoryTriggerScript());
         if(request.getAcquisitionInventoryDoneTriggerScript() != null) body.put("acquisitionInventoryDoneTriggerScript", request.getAcquisitionInventoryDoneTriggerScript());
         if(request.getConsumeInventoryTriggerScript() != null) body.put("consumeInventoryTriggerScript", request.getConsumeInventoryTriggerScript());
@@ -746,43 +870,6 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 
 		return doRequest(put, UpdateItemResult.class);
-
-	}
-
-
-	/**
-	 * 消費型アイテムプールを更新します<br>
-	 * <br>
-	 *
-	 * @param request リクエストパラメータ
-
-	 * @return 結果
-
-	 */
-
-	public UpdateItemPoolResult updateItemPool(UpdateItemPoolRequest request) {
-
-		ObjectNode body = JsonNodeFactory.instance.objectNode()
-				.put("description", request.getDescription())
-				.put("serviceClass", request.getServiceClass());
-
-        if(request.getAcquisitionInventoryTriggerScript() != null) body.put("acquisitionInventoryTriggerScript", request.getAcquisitionInventoryTriggerScript());
-        if(request.getAcquisitionInventoryDoneTriggerScript() != null) body.put("acquisitionInventoryDoneTriggerScript", request.getAcquisitionInventoryDoneTriggerScript());
-        if(request.getConsumeInventoryTriggerScript() != null) body.put("consumeInventoryTriggerScript", request.getConsumeInventoryTriggerScript());
-        if(request.getConsumeInventoryDoneTriggerScript() != null) body.put("consumeInventoryDoneTriggerScript", request.getConsumeInventoryDoneTriggerScript());
-		HttpPut put = createHttpPut(
-				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "",
-				credential,
-				ENDPOINT,
-				UpdateItemPoolRequest.Constant.MODULE,
-				UpdateItemPoolRequest.Constant.FUNCTION,
-				body.toString());
-        if(request.getRequestId() != null) {
-            put.setHeader("X-GS2-REQUEST-ID", request.getRequestId());
-        }
-
-
-		return doRequest(put, UpdateItemPoolResult.class);
 
 	}
 

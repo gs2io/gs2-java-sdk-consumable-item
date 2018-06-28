@@ -31,56 +31,27 @@ public class CreateItemPoolRequest extends Gs2BasicRequest<CreateItemPoolRequest
 		public static final String FUNCTION = "CreateItemPool";
 	}
 
-	/** アイテム入手完了時 に実行されるGS2-Script */
-	private String acquisitionInventoryDoneTriggerScript;
-
 	/** 仮想通貨名 */
 	private String name;
-
-	/** アイテム入手時 に実行されるGS2-Script */
-	private String acquisitionInventoryTriggerScript;
-
-	/** アイテム消費完了時 に実行されるGS2-Script */
-	private String consumeInventoryDoneTriggerScript;
-
-	/** サービスクラス */
-	private String serviceClass;
-
-	/** アイテム消費時 に実行されるGS2-Script */
-	private String consumeInventoryTriggerScript;
 
 	/** 説明文(1024文字以内) */
 	private String description;
 
+	/** サービスクラス */
+	private String serviceClass;
 
-	/**
-	 * アイテム入手完了時 に実行されるGS2-Scriptを取得
-	 *
-	 * @return アイテム入手完了時 に実行されるGS2-Script
-	 */
-	public String getAcquisitionInventoryDoneTriggerScript() {
-		return acquisitionInventoryDoneTriggerScript;
-	}
+	/** アイテム入手時 に実行されるGS2-Script */
+	private String acquisitionInventoryTriggerScript;
 
-	/**
-	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
-	 */
-	public void setAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
-		this.acquisitionInventoryDoneTriggerScript = acquisitionInventoryDoneTriggerScript;
-	}
+	/** アイテム入手完了時 に実行されるGS2-Script */
+	private String acquisitionInventoryDoneTriggerScript;
 
-	/**
-	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
-	 * @return this
-	 */
-	public CreateItemPoolRequest withAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
-		setAcquisitionInventoryDoneTriggerScript(acquisitionInventoryDoneTriggerScript);
-		return this;
-	}
+	/** アイテム消費時 に実行されるGS2-Script */
+	private String consumeInventoryTriggerScript;
+
+	/** アイテム消費完了時 に実行されるGS2-Script */
+	private String consumeInventoryDoneTriggerScript;
+
 
 	/**
 	 * 仮想通貨名を取得
@@ -112,60 +83,31 @@ public class CreateItemPoolRequest extends Gs2BasicRequest<CreateItemPoolRequest
 	}
 
 	/**
-	 * アイテム入手時 に実行されるGS2-Scriptを取得
+	 * 説明文(1024文字以内)を取得
 	 *
-	 * @return アイテム入手時 に実行されるGS2-Script
+	 * @return 説明文(1024文字以内)
 	 */
-	public String getAcquisitionInventoryTriggerScript() {
-		return acquisitionInventoryTriggerScript;
+	public String getDescription() {
+		return description;
 	}
 
 	/**
-	 * アイテム入手時 に実行されるGS2-Scriptを設定
+	 * 説明文(1024文字以内)を設定
 	 *
-	 * @param acquisitionInventoryTriggerScript アイテム入手時 に実行されるGS2-Script
+	 * @param description 説明文(1024文字以内)
 	 */
-	public void setAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
-		this.acquisitionInventoryTriggerScript = acquisitionInventoryTriggerScript;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	/**
-	 * アイテム入手時 に実行されるGS2-Scriptを設定
+	 * 説明文(1024文字以内)を設定
 	 *
-	 * @param acquisitionInventoryTriggerScript アイテム入手時 に実行されるGS2-Script
+	 * @param description 説明文(1024文字以内)
 	 * @return this
 	 */
-	public CreateItemPoolRequest withAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
-		setAcquisitionInventoryTriggerScript(acquisitionInventoryTriggerScript);
-		return this;
-	}
-
-	/**
-	 * アイテム消費完了時 に実行されるGS2-Scriptを取得
-	 *
-	 * @return アイテム消費完了時 に実行されるGS2-Script
-	 */
-	public String getConsumeInventoryDoneTriggerScript() {
-		return consumeInventoryDoneTriggerScript;
-	}
-
-	/**
-	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
-	 */
-	public void setConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
-		this.consumeInventoryDoneTriggerScript = consumeInventoryDoneTriggerScript;
-	}
-
-	/**
-	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
-	 * @return this
-	 */
-	public CreateItemPoolRequest withConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
-		setConsumeInventoryDoneTriggerScript(consumeInventoryDoneTriggerScript);
+	public CreateItemPoolRequest withDescription(String description) {
+		setDescription(description);
 		return this;
 	}
 
@@ -199,6 +141,64 @@ public class CreateItemPoolRequest extends Gs2BasicRequest<CreateItemPoolRequest
 	}
 
 	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム入手時 に実行されるGS2-Script
+	 */
+	public String getAcquisitionInventoryTriggerScript() {
+		return acquisitionInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryTriggerScript アイテム入手時 に実行されるGS2-Script
+	 */
+	public void setAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
+		this.acquisitionInventoryTriggerScript = acquisitionInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryTriggerScript アイテム入手時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateItemPoolRequest withAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
+		setAcquisitionInventoryTriggerScript(acquisitionInventoryTriggerScript);
+		return this;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム入手完了時 に実行されるGS2-Script
+	 */
+	public String getAcquisitionInventoryDoneTriggerScript() {
+		return acquisitionInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 */
+	public void setAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
+		this.acquisitionInventoryDoneTriggerScript = acquisitionInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public CreateItemPoolRequest withAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
+		setAcquisitionInventoryDoneTriggerScript(acquisitionInventoryDoneTriggerScript);
+		return this;
+	}
+
+	/**
 	 * アイテム消費時 に実行されるGS2-Scriptを取得
 	 *
 	 * @return アイテム消費時 に実行されるGS2-Script
@@ -228,31 +228,31 @@ public class CreateItemPoolRequest extends Gs2BasicRequest<CreateItemPoolRequest
 	}
 
 	/**
-	 * 説明文(1024文字以内)を取得
+	 * アイテム消費完了時 に実行されるGS2-Scriptを取得
 	 *
-	 * @return 説明文(1024文字以内)
+	 * @return アイテム消費完了時 に実行されるGS2-Script
 	 */
-	public String getDescription() {
-		return description;
+	public String getConsumeInventoryDoneTriggerScript() {
+		return consumeInventoryDoneTriggerScript;
 	}
 
 	/**
-	 * 説明文(1024文字以内)を設定
+	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param description 説明文(1024文字以内)
+	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
 	 */
-	public void setDescription(String description) {
-		this.description = description;
+	public void setConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
+		this.consumeInventoryDoneTriggerScript = consumeInventoryDoneTriggerScript;
 	}
 
 	/**
-	 * 説明文(1024文字以内)を設定
+	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param description 説明文(1024文字以内)
+	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
 	 * @return this
 	 */
-	public CreateItemPoolRequest withDescription(String description) {
-		setDescription(description);
+	public CreateItemPoolRequest withConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
+		setConsumeInventoryDoneTriggerScript(consumeInventoryDoneTriggerScript);
 		return this;
 	}
 

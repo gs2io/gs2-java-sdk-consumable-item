@@ -30,91 +30,39 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class ItemPool implements Serializable {
 
-	/** アイテム入手完了時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
- */
-	private String acquisitionInventoryDoneTriggerScript;
-
-	/** 消費型アイテムプール名 */
-	private String name;
-
 	/** 消費型アイテムプールID */
 	private String itemPoolId;
-
-	/** サービスクラス */
-	private String serviceClass;
-
-	/** アイテム入手時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
- */
-	private String acquisitionInventoryTriggerScript;
-
-	/** 作成日時(エポック秒) */
-	private Integer createAt;
 
 	/** オーナーID */
 	private String ownerId;
 
-	/** 最終更新日時(エポック秒) */
-	private Integer updateAt;
-
-	/** アイテム消費完了時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
- */
-	private String consumeInventoryDoneTriggerScript;
-
-	/** アイテム消費時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
- */
-	private String consumeInventoryTriggerScript;
+	/** 消費型アイテムプール名 */
+	private String name;
 
 	/** 説明文 */
 	private String description;
 
+	/** サービスクラス */
+	private String serviceClass;
 
-	/**
-	 * アイテム入手完了時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-を取得
-	 *
-	 * @return アイテム入手完了時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
+	/** アイテム入手時 に実行されるGS2-Script */
+	private String acquisitionInventoryTriggerScript;
 
-	 */
-	public String getAcquisitionInventoryDoneTriggerScript() {
-		return acquisitionInventoryDoneTriggerScript;
-	}
+	/** アイテム入手完了時 に実行されるGS2-Script */
+	private String acquisitionInventoryDoneTriggerScript;
 
-	/**
-	 * アイテム入手完了時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-を設定
-	 *
-	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
+	/** アイテム消費時 に実行されるGS2-Script */
+	private String consumeInventoryTriggerScript;
 
-	 */
-	public void setAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
-		this.acquisitionInventoryDoneTriggerScript = acquisitionInventoryDoneTriggerScript;
-	}
+	/** アイテム消費完了時 に実行されるGS2-Script */
+	private String consumeInventoryDoneTriggerScript;
 
-	/**
-	 * 消費型アイテムプール名を取得
-	 *
-	 * @return 消費型アイテムプール名
-	 */
-	public String getName() {
-		return name;
-	}
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
 
-	/**
-	 * 消費型アイテムプール名を設定
-	 *
-	 * @param name 消費型アイテムプール名
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+	/** 最終更新日時(エポック秒) */
+	private Integer updateAt;
+
 
 	/**
 	 * 消費型アイテムプールIDを取得
@@ -132,68 +80,6 @@ Item に設定がある場合はそちらが優先されます
 	 */
 	public void setItemPoolId(String itemPoolId) {
 		this.itemPoolId = itemPoolId;
-	}
-
-	/**
-	 * サービスクラスを取得
-	 *
-	 * @return サービスクラス
-	 */
-	public String getServiceClass() {
-		return serviceClass;
-	}
-
-	/**
-	 * サービスクラスを設定
-	 *
-	 * @param serviceClass サービスクラス
-	 */
-	public void setServiceClass(String serviceClass) {
-		this.serviceClass = serviceClass;
-	}
-
-	/**
-	 * アイテム入手時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-を取得
-	 *
-	 * @return アイテム入手時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-
-	 */
-	public String getAcquisitionInventoryTriggerScript() {
-		return acquisitionInventoryTriggerScript;
-	}
-
-	/**
-	 * アイテム入手時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-を設定
-	 *
-	 * @param acquisitionInventoryTriggerScript アイテム入手時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-
-	 */
-	public void setAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
-		this.acquisitionInventoryTriggerScript = acquisitionInventoryTriggerScript;
-	}
-
-	/**
-	 * 作成日時(エポック秒)を取得
-	 *
-	 * @return 作成日時(エポック秒)
-	 */
-	public Integer getCreateAt() {
-		return createAt;
-	}
-
-	/**
-	 * 作成日時(エポック秒)を設定
-	 *
-	 * @param createAt 作成日時(エポック秒)
-	 */
-	public void setCreateAt(Integer createAt) {
-		this.createAt = createAt;
 	}
 
 	/**
@@ -215,73 +101,21 @@ Item に設定がある場合はそちらが優先されます
 	}
 
 	/**
-	 * 最終更新日時(エポック秒)を取得
+	 * 消費型アイテムプール名を取得
 	 *
-	 * @return 最終更新日時(エポック秒)
+	 * @return 消費型アイテムプール名
 	 */
-	public Integer getUpdateAt() {
-		return updateAt;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * 最終更新日時(エポック秒)を設定
+	 * 消費型アイテムプール名を設定
 	 *
-	 * @param updateAt 最終更新日時(エポック秒)
+	 * @param name 消費型アイテムプール名
 	 */
-	public void setUpdateAt(Integer updateAt) {
-		this.updateAt = updateAt;
-	}
-
-	/**
-	 * アイテム消費完了時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-を取得
-	 *
-	 * @return アイテム消費完了時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-
-	 */
-	public String getConsumeInventoryDoneTriggerScript() {
-		return consumeInventoryDoneTriggerScript;
-	}
-
-	/**
-	 * アイテム消費完了時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-を設定
-	 *
-	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-
-	 */
-	public void setConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
-		this.consumeInventoryDoneTriggerScript = consumeInventoryDoneTriggerScript;
-	}
-
-	/**
-	 * アイテム消費時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-を取得
-	 *
-	 * @return アイテム消費時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-
-	 */
-	public String getConsumeInventoryTriggerScript() {
-		return consumeInventoryTriggerScript;
-	}
-
-	/**
-	 * アイテム消費時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-を設定
-	 *
-	 * @param consumeInventoryTriggerScript アイテム消費時 に実行されるGS2-Script
-Item に設定がある場合はそちらが優先されます
-
-	 */
-	public void setConsumeInventoryTriggerScript(String consumeInventoryTriggerScript) {
-		this.consumeInventoryTriggerScript = consumeInventoryTriggerScript;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
@@ -300,6 +134,132 @@ Item に設定がある場合はそちらが優先されます
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	/**
+	 * サービスクラスを取得
+	 *
+	 * @return サービスクラス
+	 */
+	public String getServiceClass() {
+		return serviceClass;
+	}
+
+	/**
+	 * サービスクラスを設定
+	 *
+	 * @param serviceClass サービスクラス
+	 */
+	public void setServiceClass(String serviceClass) {
+		this.serviceClass = serviceClass;
+	}
+
+	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム入手時 に実行されるGS2-Script
+	 */
+	public String getAcquisitionInventoryTriggerScript() {
+		return acquisitionInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryTriggerScript アイテム入手時 に実行されるGS2-Script
+	 */
+	public void setAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
+		this.acquisitionInventoryTriggerScript = acquisitionInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム入手完了時 に実行されるGS2-Script
+	 */
+	public String getAcquisitionInventoryDoneTriggerScript() {
+		return acquisitionInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 */
+	public void setAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
+		this.acquisitionInventoryDoneTriggerScript = acquisitionInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム消費時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム消費時 に実行されるGS2-Script
+	 */
+	public String getConsumeInventoryTriggerScript() {
+		return consumeInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム消費時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param consumeInventoryTriggerScript アイテム消費時 に実行されるGS2-Script
+	 */
+	public void setConsumeInventoryTriggerScript(String consumeInventoryTriggerScript) {
+		this.consumeInventoryTriggerScript = consumeInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム消費完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム消費完了時 に実行されるGS2-Script
+	 */
+	public String getConsumeInventoryDoneTriggerScript() {
+		return consumeInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
+	 */
+	public void setConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
+		this.consumeInventoryDoneTriggerScript = consumeInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を取得
+	 *
+	 * @return 作成日時(エポック秒)
+	 */
+	public Integer getCreateAt() {
+		return createAt;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 */
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
+	}
+
+	/**
+	 * 最終更新日時(エポック秒)を取得
+	 *
+	 * @return 最終更新日時(エポック秒)
+	 */
+	public Integer getUpdateAt() {
+		return updateAt;
+	}
+
+	/**
+	 * 最終更新日時(エポック秒)を設定
+	 *
+	 * @param updateAt 最終更新日時(エポック秒)
+	 */
+	public void setUpdateAt(Integer updateAt) {
+		this.updateAt = updateAt;
 	}
 
 }

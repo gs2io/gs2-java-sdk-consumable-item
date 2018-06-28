@@ -30,78 +30,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown=true)
 public class Inventory implements Serializable {
 
-	/** 所持数量 */
-	private Integer count;
-
-	/** 作成日時(エポック秒) */
-	private Integer createAt;
-
-	/** 消費型アイテム名 */
-	private String itemName;
-
 	/** 所持品ID */
 	private String inventoryId;
 
 	/** ユーザID */
 	private String userId;
 
+	/** 消費型アイテム名 */
+	private String itemName;
+
+	/** 所持数量 */
+	private Integer count;
+
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
+
 	/** 最終更新日時(エポック秒) */
 	private Integer updateAt;
 
-
-	/**
-	 * 所持数量を取得
-	 *
-	 * @return 所持数量
-	 */
-	public Integer getCount() {
-		return count;
-	}
-
-	/**
-	 * 所持数量を設定
-	 *
-	 * @param count 所持数量
-	 */
-	public void setCount(Integer count) {
-		this.count = count;
-	}
-
-	/**
-	 * 作成日時(エポック秒)を取得
-	 *
-	 * @return 作成日時(エポック秒)
-	 */
-	public Integer getCreateAt() {
-		return createAt;
-	}
-
-	/**
-	 * 作成日時(エポック秒)を設定
-	 *
-	 * @param createAt 作成日時(エポック秒)
-	 */
-	public void setCreateAt(Integer createAt) {
-		this.createAt = createAt;
-	}
-
-	/**
-	 * 消費型アイテム名を取得
-	 *
-	 * @return 消費型アイテム名
-	 */
-	public String getItemName() {
-		return itemName;
-	}
-
-	/**
-	 * 消費型アイテム名を設定
-	 *
-	 * @param itemName 消費型アイテム名
-	 */
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
 
 	/**
 	 * 所持品IDを取得
@@ -137,6 +83,60 @@ public class Inventory implements Serializable {
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	/**
+	 * 消費型アイテム名を取得
+	 *
+	 * @return 消費型アイテム名
+	 */
+	public String getItemName() {
+		return itemName;
+	}
+
+	/**
+	 * 消費型アイテム名を設定
+	 *
+	 * @param itemName 消費型アイテム名
+	 */
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	/**
+	 * 所持数量を取得
+	 *
+	 * @return 所持数量
+	 */
+	public Integer getCount() {
+		return count;
+	}
+
+	/**
+	 * 所持数量を設定
+	 *
+	 * @param count 所持数量
+	 */
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を取得
+	 *
+	 * @return 作成日時(エポック秒)
+	 */
+	public Integer getCreateAt() {
+		return createAt;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 */
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
 	}
 
 	/**

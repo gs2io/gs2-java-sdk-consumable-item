@@ -40,17 +40,17 @@ public class UpdateItemRequest extends Gs2BasicRequest<UpdateItemRequest> {
 	/** 最大所持数。 */
 	private Integer max;
 
-	/** アイテム消費完了時 に実行されるGS2-Script */
-	private String consumeInventoryDoneTriggerScript;
-
 	/** アイテム入手時 に実行されるGS2-Script */
 	private String acquisitionInventoryTriggerScript;
+
+	/** アイテム入手完了時 に実行されるGS2-Script */
+	private String acquisitionInventoryDoneTriggerScript;
 
 	/** アイテム消費時 に実行されるGS2-Script */
 	private String consumeInventoryTriggerScript;
 
-	/** アイテム入手完了時 に実行されるGS2-Script */
-	private String acquisitionInventoryDoneTriggerScript;
+	/** アイテム消費完了時 に実行されるGS2-Script */
+	private String consumeInventoryDoneTriggerScript;
 
 
 	/**
@@ -141,35 +141,6 @@ public class UpdateItemRequest extends Gs2BasicRequest<UpdateItemRequest> {
 	}
 
 	/**
-	 * アイテム消費完了時 に実行されるGS2-Scriptを取得
-	 *
-	 * @return アイテム消費完了時 に実行されるGS2-Script
-	 */
-	public String getConsumeInventoryDoneTriggerScript() {
-		return consumeInventoryDoneTriggerScript;
-	}
-
-	/**
-	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
-	 */
-	public void setConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
-		this.consumeInventoryDoneTriggerScript = consumeInventoryDoneTriggerScript;
-	}
-
-	/**
-	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
-	 * @return this
-	 */
-	public UpdateItemRequest withConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
-		setConsumeInventoryDoneTriggerScript(consumeInventoryDoneTriggerScript);
-		return this;
-	}
-
-	/**
 	 * アイテム入手時 に実行されるGS2-Scriptを取得
 	 *
 	 * @return アイテム入手時 に実行されるGS2-Script
@@ -195,6 +166,35 @@ public class UpdateItemRequest extends Gs2BasicRequest<UpdateItemRequest> {
 	 */
 	public UpdateItemRequest withAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
 		setAcquisitionInventoryTriggerScript(acquisitionInventoryTriggerScript);
+		return this;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム入手完了時 に実行されるGS2-Script
+	 */
+	public String getAcquisitionInventoryDoneTriggerScript() {
+		return acquisitionInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 */
+	public void setAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
+		this.acquisitionInventoryDoneTriggerScript = acquisitionInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public UpdateItemRequest withAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
+		setAcquisitionInventoryDoneTriggerScript(acquisitionInventoryDoneTriggerScript);
 		return this;
 	}
 
@@ -228,31 +228,31 @@ public class UpdateItemRequest extends Gs2BasicRequest<UpdateItemRequest> {
 	}
 
 	/**
-	 * アイテム入手完了時 に実行されるGS2-Scriptを取得
+	 * アイテム消費完了時 に実行されるGS2-Scriptを取得
 	 *
-	 * @return アイテム入手完了時 に実行されるGS2-Script
+	 * @return アイテム消費完了時 に実行されるGS2-Script
 	 */
-	public String getAcquisitionInventoryDoneTriggerScript() {
-		return acquisitionInventoryDoneTriggerScript;
+	public String getConsumeInventoryDoneTriggerScript() {
+		return consumeInventoryDoneTriggerScript;
 	}
 
 	/**
-	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
 	 */
-	public void setAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
-		this.acquisitionInventoryDoneTriggerScript = acquisitionInventoryDoneTriggerScript;
+	public void setConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
+		this.consumeInventoryDoneTriggerScript = consumeInventoryDoneTriggerScript;
 	}
 
 	/**
-	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
 	 * @return this
 	 */
-	public UpdateItemRequest withAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
-		setAcquisitionInventoryDoneTriggerScript(acquisitionInventoryDoneTriggerScript);
+	public UpdateItemRequest withConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
+		setConsumeInventoryDoneTriggerScript(consumeInventoryDoneTriggerScript);
 		return this;
 	}
 

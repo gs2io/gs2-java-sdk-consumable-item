@@ -25,13 +25,10 @@ import io.gs2.consumableItem.model.*;
  * @author Game Server Services, Inc.
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class DescribeMyInventoryResult {
+public class ConsumeInventoryByStampTaskResult {
 
 	/** 所持品 */
-	private List<Inventory> items;
-
-	/** 次のページを読み込むためのトークン */
-	private String nextPageToken;
+	private Inventory item;
 
 
 	/**
@@ -39,35 +36,17 @@ public class DescribeMyInventoryResult {
 	 *
 	 * @return 所持品
 	 */
-	public List<Inventory> getItems() {
-		return items;
+	public Inventory getItem() {
+		return item;
 	}
 
 	/**
 	 * 所持品を設定
 	 *
-	 * @param items 所持品
+	 * @param item 所持品
 	 */
-	public void setItems(List<Inventory> items) {
-		this.items = items;
-	}
-
-	/**
-	 * 次のページを読み込むためのトークンを取得
-	 *
-	 * @return 次のページを読み込むためのトークン
-	 */
-	public String getNextPageToken() {
-		return nextPageToken;
-	}
-
-	/**
-	 * 次のページを読み込むためのトークンを設定
-	 *
-	 * @param nextPageToken 次のページを読み込むためのトークン
-	 */
-	public void setNextPageToken(String nextPageToken) {
-		this.nextPageToken = nextPageToken;
+	public void setItem(Inventory item) {
+		this.item = item;
 	}
 
 }

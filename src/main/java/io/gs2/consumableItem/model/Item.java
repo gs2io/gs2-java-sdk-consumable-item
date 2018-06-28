@@ -33,8 +33,8 @@ public class Item implements Serializable {
 	/** 消費型アイテムID */
 	private String itemId;
 
-	/** アイテム入手完了時 に実行されるGS2-Script */
-	private String acquisitionInventoryDoneTriggerScript;
+	/** 消費型アイテムプールID */
+	private String itemPoolId;
 
 	/** 消費型アイテム名 */
 	private String name;
@@ -42,23 +42,23 @@ public class Item implements Serializable {
 	/** 所持数の上限 */
 	private Integer max;
 
-	/** 消費型アイテムプールID */
-	private String itemPoolId;
-
 	/** アイテム入手時 に実行されるGS2-Script */
 	private String acquisitionInventoryTriggerScript;
+
+	/** アイテム入手完了時 に実行されるGS2-Script */
+	private String acquisitionInventoryDoneTriggerScript;
+
+	/** アイテム消費時 に実行されるGS2-Script */
+	private String consumeInventoryTriggerScript;
+
+	/** アイテム消費完了時 に実行されるGS2-Script */
+	private String consumeInventoryDoneTriggerScript;
 
 	/** 作成日時(エポック秒) */
 	private Integer createAt;
 
 	/** 最終更新日時(エポック秒) */
 	private Integer updateAt;
-
-	/** アイテム消費完了時 に実行されるGS2-Script */
-	private String consumeInventoryDoneTriggerScript;
-
-	/** アイテム消費時 に実行されるGS2-Script */
-	private String consumeInventoryTriggerScript;
 
 
 	/**
@@ -80,21 +80,21 @@ public class Item implements Serializable {
 	}
 
 	/**
-	 * アイテム入手完了時 に実行されるGS2-Scriptを取得
+	 * 消費型アイテムプールIDを取得
 	 *
-	 * @return アイテム入手完了時 に実行されるGS2-Script
+	 * @return 消費型アイテムプールID
 	 */
-	public String getAcquisitionInventoryDoneTriggerScript() {
-		return acquisitionInventoryDoneTriggerScript;
+	public String getItemPoolId() {
+		return itemPoolId;
 	}
 
 	/**
-	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 * 消費型アイテムプールIDを設定
 	 *
-	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 * @param itemPoolId 消費型アイテムプールID
 	 */
-	public void setAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
-		this.acquisitionInventoryDoneTriggerScript = acquisitionInventoryDoneTriggerScript;
+	public void setItemPoolId(String itemPoolId) {
+		this.itemPoolId = itemPoolId;
 	}
 
 	/**
@@ -134,24 +134,6 @@ public class Item implements Serializable {
 	}
 
 	/**
-	 * 消費型アイテムプールIDを取得
-	 *
-	 * @return 消費型アイテムプールID
-	 */
-	public String getItemPoolId() {
-		return itemPoolId;
-	}
-
-	/**
-	 * 消費型アイテムプールIDを設定
-	 *
-	 * @param itemPoolId 消費型アイテムプールID
-	 */
-	public void setItemPoolId(String itemPoolId) {
-		this.itemPoolId = itemPoolId;
-	}
-
-	/**
 	 * アイテム入手時 に実行されるGS2-Scriptを取得
 	 *
 	 * @return アイテム入手時 に実行されるGS2-Script
@@ -167,6 +149,60 @@ public class Item implements Serializable {
 	 */
 	public void setAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
 		this.acquisitionInventoryTriggerScript = acquisitionInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム入手完了時 に実行されるGS2-Script
+	 */
+	public String getAcquisitionInventoryDoneTriggerScript() {
+		return acquisitionInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 */
+	public void setAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
+		this.acquisitionInventoryDoneTriggerScript = acquisitionInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム消費時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム消費時 に実行されるGS2-Script
+	 */
+	public String getConsumeInventoryTriggerScript() {
+		return consumeInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム消費時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param consumeInventoryTriggerScript アイテム消費時 に実行されるGS2-Script
+	 */
+	public void setConsumeInventoryTriggerScript(String consumeInventoryTriggerScript) {
+		this.consumeInventoryTriggerScript = consumeInventoryTriggerScript;
+	}
+
+	/**
+	 * アイテム消費完了時 に実行されるGS2-Scriptを取得
+	 *
+	 * @return アイテム消費完了時 に実行されるGS2-Script
+	 */
+	public String getConsumeInventoryDoneTriggerScript() {
+		return consumeInventoryDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
+	 */
+	public void setConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
+		this.consumeInventoryDoneTriggerScript = consumeInventoryDoneTriggerScript;
 	}
 
 	/**
@@ -203,42 +239,6 @@ public class Item implements Serializable {
 	 */
 	public void setUpdateAt(Integer updateAt) {
 		this.updateAt = updateAt;
-	}
-
-	/**
-	 * アイテム消費完了時 に実行されるGS2-Scriptを取得
-	 *
-	 * @return アイテム消費完了時 に実行されるGS2-Script
-	 */
-	public String getConsumeInventoryDoneTriggerScript() {
-		return consumeInventoryDoneTriggerScript;
-	}
-
-	/**
-	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
-	 */
-	public void setConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
-		this.consumeInventoryDoneTriggerScript = consumeInventoryDoneTriggerScript;
-	}
-
-	/**
-	 * アイテム消費時 に実行されるGS2-Scriptを取得
-	 *
-	 * @return アイテム消費時 に実行されるGS2-Script
-	 */
-	public String getConsumeInventoryTriggerScript() {
-		return consumeInventoryTriggerScript;
-	}
-
-	/**
-	 * アイテム消費時 に実行されるGS2-Scriptを設定
-	 *
-	 * @param consumeInventoryTriggerScript アイテム消費時 に実行されるGS2-Script
-	 */
-	public void setConsumeInventoryTriggerScript(String consumeInventoryTriggerScript) {
-		this.consumeInventoryTriggerScript = consumeInventoryTriggerScript;
 	}
 
 }
