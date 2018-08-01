@@ -14,32 +14,34 @@
  * permissions and limitations under the License.
  */
 
-package io.gs2.consumableItem.control;
+package io.gs2.consumableItem.model;
 
-import org.json.JSONObject;
+import java.util.ArrayList;
 import java.util.List;
-import io.gs2.consumableItem.model.*;
-import io.gs2.consumableItem.Gs2ConsumableItem;
-import io.gs2.control.Gs2BasicRequest;
+import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 /**
+ * 消費型アイテム
+ *
  * @author Game Server Services, Inc.
+ *
  */
 @SuppressWarnings("serial")
-public class UpdateItemPoolRequest extends Gs2BasicRequest<UpdateItemPoolRequest> {
+@JsonIgnoreProperties(ignoreUnknown=true)
+public class ItemMaster implements Serializable {
 
-	public static class Constant extends Gs2ConsumableItem.Constant {
-		public static final String FUNCTION = "UpdateItemPool";
-	}
+	/** 消費型アイテムID */
+	private String itemId;
 
-	/** 更新する消費型アイテムプールの名前 */
-	private String itemPoolName;
+	/** 消費型アイテム名 */
+	private String name;
 
-	/** 説明文(1024文字以内) */
-	private String description;
-
-	/** サービスクラス */
-	private String serviceClass;
+	/** 所持数の上限 */
+	private Integer max;
 
 	/** アイテム入手時 に実行されるGS2-Script */
 	private String acquisitionItemTriggerScript;
@@ -53,91 +55,97 @@ public class UpdateItemPoolRequest extends Gs2BasicRequest<UpdateItemPoolRequest
 	/** アイテム消費完了時 に実行されるGS2-Script */
 	private String consumeItemDoneTriggerScript;
 
+	/** 作成日時(エポック秒) */
+	private Integer createAt;
+
+	/** 最終更新日時(エポック秒) */
+	private Integer updateAt;
+
 
 	/**
-	 * 更新する消費型アイテムプールの名前を取得
+	 * 消費型アイテムIDを取得
 	 *
-	 * @return 更新する消費型アイテムプールの名前
+	 * @return 消費型アイテムID
 	 */
-	public String getItemPoolName() {
-		return itemPoolName;
+	public String getItemId() {
+		return itemId;
 	}
 
 	/**
-	 * 更新する消費型アイテムプールの名前を設定
+	 * 消費型アイテムIDを設定
 	 *
-	 * @param itemPoolName 更新する消費型アイテムプールの名前
+	 * @param itemId 消費型アイテムID
 	 */
-	public void setItemPoolName(String itemPoolName) {
-		this.itemPoolName = itemPoolName;
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
 	}
 
 	/**
-	 * 更新する消費型アイテムプールの名前を設定
+	 * 消費型アイテムIDを設定
 	 *
-	 * @param itemPoolName 更新する消費型アイテムプールの名前
+	 * @param itemId 消費型アイテムID
 	 * @return this
 	 */
-	public UpdateItemPoolRequest withItemPoolName(String itemPoolName) {
-		setItemPoolName(itemPoolName);
+	public ItemMaster withItemId(String itemId) {
+		this.itemId = itemId;
 		return this;
 	}
 
 	/**
-	 * 説明文(1024文字以内)を取得
+	 * 消費型アイテム名を取得
 	 *
-	 * @return 説明文(1024文字以内)
+	 * @return 消費型アイテム名
 	 */
-	public String getDescription() {
-		return description;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * 説明文(1024文字以内)を設定
+	 * 消費型アイテム名を設定
 	 *
-	 * @param description 説明文(1024文字以内)
+	 * @param name 消費型アイテム名
 	 */
-	public void setDescription(String description) {
-		this.description = description;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
-	 * 説明文(1024文字以内)を設定
+	 * 消費型アイテム名を設定
 	 *
-	 * @param description 説明文(1024文字以内)
+	 * @param name 消費型アイテム名
 	 * @return this
 	 */
-	public UpdateItemPoolRequest withDescription(String description) {
-		setDescription(description);
+	public ItemMaster withName(String name) {
+		this.name = name;
 		return this;
 	}
 
 	/**
-	 * サービスクラスを取得
+	 * 所持数の上限を取得
 	 *
-	 * @return サービスクラス
+	 * @return 所持数の上限
 	 */
-	public String getServiceClass() {
-		return serviceClass;
+	public Integer getMax() {
+		return max;
 	}
 
 	/**
-	 * サービスクラスを設定
+	 * 所持数の上限を設定
 	 *
-	 * @param serviceClass サービスクラス
+	 * @param max 所持数の上限
 	 */
-	public void setServiceClass(String serviceClass) {
-		this.serviceClass = serviceClass;
+	public void setMax(Integer max) {
+		this.max = max;
 	}
 
 	/**
-	 * サービスクラスを設定
+	 * 所持数の上限を設定
 	 *
-	 * @param serviceClass サービスクラス
+	 * @param max 所持数の上限
 	 * @return this
 	 */
-	public UpdateItemPoolRequest withServiceClass(String serviceClass) {
-		setServiceClass(serviceClass);
+	public ItemMaster withMax(Integer max) {
+		this.max = max;
 		return this;
 	}
 
@@ -165,8 +173,8 @@ public class UpdateItemPoolRequest extends Gs2BasicRequest<UpdateItemPoolRequest
 	 * @param acquisitionItemTriggerScript アイテム入手時 に実行されるGS2-Script
 	 * @return this
 	 */
-	public UpdateItemPoolRequest withAcquisitionItemTriggerScript(String acquisitionItemTriggerScript) {
-		setAcquisitionItemTriggerScript(acquisitionItemTriggerScript);
+	public ItemMaster withAcquisitionItemTriggerScript(String acquisitionItemTriggerScript) {
+		this.acquisitionItemTriggerScript = acquisitionItemTriggerScript;
 		return this;
 	}
 
@@ -194,8 +202,8 @@ public class UpdateItemPoolRequest extends Gs2BasicRequest<UpdateItemPoolRequest
 	 * @param acquisitionItemDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
 	 * @return this
 	 */
-	public UpdateItemPoolRequest withAcquisitionItemDoneTriggerScript(String acquisitionItemDoneTriggerScript) {
-		setAcquisitionItemDoneTriggerScript(acquisitionItemDoneTriggerScript);
+	public ItemMaster withAcquisitionItemDoneTriggerScript(String acquisitionItemDoneTriggerScript) {
+		this.acquisitionItemDoneTriggerScript = acquisitionItemDoneTriggerScript;
 		return this;
 	}
 
@@ -223,8 +231,8 @@ public class UpdateItemPoolRequest extends Gs2BasicRequest<UpdateItemPoolRequest
 	 * @param consumeItemTriggerScript アイテム消費時 に実行されるGS2-Script
 	 * @return this
 	 */
-	public UpdateItemPoolRequest withConsumeItemTriggerScript(String consumeItemTriggerScript) {
-		setConsumeItemTriggerScript(consumeItemTriggerScript);
+	public ItemMaster withConsumeItemTriggerScript(String consumeItemTriggerScript) {
+		this.consumeItemTriggerScript = consumeItemTriggerScript;
 		return this;
 	}
 
@@ -252,9 +260,84 @@ public class UpdateItemPoolRequest extends Gs2BasicRequest<UpdateItemPoolRequest
 	 * @param consumeItemDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
 	 * @return this
 	 */
-	public UpdateItemPoolRequest withConsumeItemDoneTriggerScript(String consumeItemDoneTriggerScript) {
-		setConsumeItemDoneTriggerScript(consumeItemDoneTriggerScript);
+	public ItemMaster withConsumeItemDoneTriggerScript(String consumeItemDoneTriggerScript) {
+		this.consumeItemDoneTriggerScript = consumeItemDoneTriggerScript;
 		return this;
 	}
 
+	/**
+	 * 作成日時(エポック秒)を取得
+	 *
+	 * @return 作成日時(エポック秒)
+	 */
+	public Integer getCreateAt() {
+		return createAt;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 */
+	public void setCreateAt(Integer createAt) {
+		this.createAt = createAt;
+	}
+
+	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 * @return this
+	 */
+	public ItemMaster withCreateAt(Integer createAt) {
+		this.createAt = createAt;
+		return this;
+	}
+
+	/**
+	 * 最終更新日時(エポック秒)を取得
+	 *
+	 * @return 最終更新日時(エポック秒)
+	 */
+	public Integer getUpdateAt() {
+		return updateAt;
+	}
+
+	/**
+	 * 最終更新日時(エポック秒)を設定
+	 *
+	 * @param updateAt 最終更新日時(エポック秒)
+	 */
+	public void setUpdateAt(Integer updateAt) {
+		this.updateAt = updateAt;
+	}
+
+	/**
+	 * 最終更新日時(エポック秒)を設定
+	 *
+	 * @param updateAt 最終更新日時(エポック秒)
+	 * @return this
+	 */
+	public ItemMaster withUpdateAt(Integer updateAt) {
+		this.updateAt = updateAt;
+		return this;
+	}
+
+
+    public ObjectNode toJson() {
+
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+
+            .put("itemId", this.getItemId())
+            .put("name", this.getName())
+            .put("max", this.getMax())
+            .put("acquisitionItemTriggerScript", this.getAcquisitionItemTriggerScript())
+            .put("acquisitionItemDoneTriggerScript", this.getAcquisitionItemDoneTriggerScript())
+            .put("consumeItemTriggerScript", this.getConsumeItemTriggerScript())
+            .put("consumeItemDoneTriggerScript", this.getConsumeItemDoneTriggerScript())
+            .put("createAt", this.getCreateAt())
+            .put("updateAt", this.getUpdateAt());
+
+        return body;
+    }
 }

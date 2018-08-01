@@ -18,6 +18,7 @@ package io.gs2.consumableItem.control;
 
 import org.json.JSONObject;
 import java.util.List;
+import io.gs2.consumableItem.model.*;
 import io.gs2.consumableItem.Gs2ConsumableItem;
 import io.gs2.control.Gs2UserRequest;
 
@@ -25,10 +26,10 @@ import io.gs2.control.Gs2UserRequest;
  * @author Game Server Services, Inc.
  */
 @SuppressWarnings("serial")
-public class ConsumeMyInventoryRequest extends Gs2UserRequest<ConsumeMyInventoryRequest> {
+public class ConsumeItemRequest extends Gs2UserRequest<ConsumeItemRequest> {
 
 	public static class Constant extends Gs2ConsumableItem.Constant {
-		public static final String FUNCTION = "ConsumeMyInventory";
+		public static final String FUNCTION = "ConsumeItem";
 	}
 
 	/** 消費型アイテムプールの名前 */
@@ -65,7 +66,7 @@ public class ConsumeMyInventoryRequest extends Gs2UserRequest<ConsumeMyInventory
 	 * @param itemPoolName 消費型アイテムプールの名前
 	 * @return this
 	 */
-	public ConsumeMyInventoryRequest withItemPoolName(String itemPoolName) {
+	public ConsumeItemRequest withItemPoolName(String itemPoolName) {
 		setItemPoolName(itemPoolName);
 		return this;
 	}
@@ -94,7 +95,7 @@ public class ConsumeMyInventoryRequest extends Gs2UserRequest<ConsumeMyInventory
 	 * @param itemName 消費型アイテムの名前
 	 * @return this
 	 */
-	public ConsumeMyInventoryRequest withItemName(String itemName) {
+	public ConsumeItemRequest withItemName(String itemName) {
 		setItemName(itemName);
 		return this;
 	}
@@ -123,7 +124,7 @@ public class ConsumeMyInventoryRequest extends Gs2UserRequest<ConsumeMyInventory
 	 * @param count 消費数量
 	 * @return this
 	 */
-	public ConsumeMyInventoryRequest withCount(Integer count) {
+	public ConsumeItemRequest withCount(Integer count) {
 		setCount(count);
 		return this;
 	}

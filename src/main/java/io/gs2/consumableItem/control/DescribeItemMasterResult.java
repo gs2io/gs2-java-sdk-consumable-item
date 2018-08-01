@@ -19,16 +19,20 @@ package io.gs2.consumableItem.control;
 import org.json.JSONObject;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.gs2.model.*;
 import io.gs2.consumableItem.model.*;
 
 /**
  * @author Game Server Services, Inc.
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class UpdateItemResult {
+public class DescribeItemMasterResult {
 
 	/** 消費型アイテム */
-	private Item item;
+	private List<ItemMaster> items;
+
+	/** 次のページを読み込むためのトークン */
+	private String nextPageToken;
 
 
 	/**
@@ -36,17 +40,35 @@ public class UpdateItemResult {
 	 *
 	 * @return 消費型アイテム
 	 */
-	public Item getItem() {
-		return item;
+	public List<ItemMaster> getItems() {
+		return items;
 	}
 
 	/**
 	 * 消費型アイテムを設定
 	 *
-	 * @param item 消費型アイテム
+	 * @param items 消費型アイテム
 	 */
-	public void setItem(Item item) {
-		this.item = item;
+	public void setItems(List<ItemMaster> items) {
+		this.items = items;
+	}
+
+	/**
+	 * 次のページを読み込むためのトークンを取得
+	 *
+	 * @return 次のページを読み込むためのトークン
+	 */
+	public String getNextPageToken() {
+		return nextPageToken;
+	}
+
+	/**
+	 * 次のページを読み込むためのトークンを設定
+	 *
+	 * @param nextPageToken 次のページを読み込むためのトークン
+	 */
+	public void setNextPageToken(String nextPageToken) {
+		this.nextPageToken = nextPageToken;
 	}
 
 }

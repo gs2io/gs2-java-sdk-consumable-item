@@ -20,20 +20,23 @@ import org.json.JSONObject;
 import java.util.List;
 import io.gs2.consumableItem.model.*;
 import io.gs2.consumableItem.Gs2ConsumableItem;
-import io.gs2.control.Gs2UserRequest;
+import io.gs2.control.Gs2BasicRequest;
 
 /**
  * @author Game Server Services, Inc.
  */
 @SuppressWarnings("serial")
-public class DescribeInventoryRequest extends Gs2UserRequest<DescribeInventoryRequest> {
+public class DescribeInventoryByUserIdRequest extends Gs2BasicRequest<DescribeInventoryByUserIdRequest> {
 
 	public static class Constant extends Gs2ConsumableItem.Constant {
-		public static final String FUNCTION = "DescribeInventory";
+		public static final String FUNCTION = "DescribeInventoryByUserId";
 	}
 
 	/** 消費型アイテムプールの名前 */
 	private String itemPoolName;
+
+	/** ユーザID */
+	private String userId;
 
 	/** データの取得を開始する位置を指定するトークン */
 	private String pageToken;
@@ -66,8 +69,37 @@ public class DescribeInventoryRequest extends Gs2UserRequest<DescribeInventoryRe
 	 * @param itemPoolName 消費型アイテムプールの名前
 	 * @return this
 	 */
-	public DescribeInventoryRequest withItemPoolName(String itemPoolName) {
+	public DescribeInventoryByUserIdRequest withItemPoolName(String itemPoolName) {
 		setItemPoolName(itemPoolName);
+		return this;
+	}
+
+	/**
+	 * ユーザIDを取得
+	 *
+	 * @return ユーザID
+	 */
+	public String getUserId() {
+		return userId;
+	}
+
+	/**
+	 * ユーザIDを設定
+	 *
+	 * @param userId ユーザID
+	 */
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	/**
+	 * ユーザIDを設定
+	 *
+	 * @param userId ユーザID
+	 * @return this
+	 */
+	public DescribeInventoryByUserIdRequest withUserId(String userId) {
+		setUserId(userId);
 		return this;
 	}
 
@@ -95,7 +127,7 @@ public class DescribeInventoryRequest extends Gs2UserRequest<DescribeInventoryRe
 	 * @param pageToken データの取得を開始する位置を指定するトークン
 	 * @return this
 	 */
-	public DescribeInventoryRequest withPageToken(String pageToken) {
+	public DescribeInventoryByUserIdRequest withPageToken(String pageToken) {
 		setPageToken(pageToken);
 		return this;
 	}
@@ -124,7 +156,7 @@ public class DescribeInventoryRequest extends Gs2UserRequest<DescribeInventoryRe
 	 * @param limit データの取得件数
 	 * @return this
 	 */
-	public DescribeInventoryRequest withLimit(Integer limit) {
+	public DescribeInventoryByUserIdRequest withLimit(Integer limit) {
 		setLimit(limit);
 		return this;
 	}

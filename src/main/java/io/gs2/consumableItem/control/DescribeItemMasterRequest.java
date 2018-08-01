@@ -18,27 +18,28 @@ package io.gs2.consumableItem.control;
 
 import org.json.JSONObject;
 import java.util.List;
+import io.gs2.consumableItem.model.*;
 import io.gs2.consumableItem.Gs2ConsumableItem;
-import io.gs2.control.Gs2UserRequest;
+import io.gs2.control.Gs2BasicRequest;
 
 /**
  * @author Game Server Services, Inc.
  */
 @SuppressWarnings("serial")
-public class AcquisitionMyInventoryRequest extends Gs2UserRequest<AcquisitionMyInventoryRequest> {
+public class DescribeItemMasterRequest extends Gs2BasicRequest<DescribeItemMasterRequest> {
 
 	public static class Constant extends Gs2ConsumableItem.Constant {
-		public static final String FUNCTION = "AcquisitionMyInventory";
+		public static final String FUNCTION = "DescribeItemMaster";
 	}
 
 	/** 消費型アイテムプールの名前 */
 	private String itemPoolName;
 
-	/** 消費型アイテムの名前 */
-	private String itemName;
+	/** データの取得を開始する位置を指定するトークン */
+	private String pageToken;
 
-	/** 入手数量 */
-	private Integer count;
+	/** データの取得件数 */
+	private Integer limit;
 
 
 	/**
@@ -65,66 +66,66 @@ public class AcquisitionMyInventoryRequest extends Gs2UserRequest<AcquisitionMyI
 	 * @param itemPoolName 消費型アイテムプールの名前
 	 * @return this
 	 */
-	public AcquisitionMyInventoryRequest withItemPoolName(String itemPoolName) {
+	public DescribeItemMasterRequest withItemPoolName(String itemPoolName) {
 		setItemPoolName(itemPoolName);
 		return this;
 	}
 
 	/**
-	 * 消費型アイテムの名前を取得
+	 * データの取得を開始する位置を指定するトークンを取得
 	 *
-	 * @return 消費型アイテムの名前
+	 * @return データの取得を開始する位置を指定するトークン
 	 */
-	public String getItemName() {
-		return itemName;
+	public String getPageToken() {
+		return pageToken;
 	}
 
 	/**
-	 * 消費型アイテムの名前を設定
+	 * データの取得を開始する位置を指定するトークンを設定
 	 *
-	 * @param itemName 消費型アイテムの名前
+	 * @param pageToken データの取得を開始する位置を指定するトークン
 	 */
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
+	public void setPageToken(String pageToken) {
+		this.pageToken = pageToken;
 	}
 
 	/**
-	 * 消費型アイテムの名前を設定
+	 * データの取得を開始する位置を指定するトークンを設定
 	 *
-	 * @param itemName 消費型アイテムの名前
+	 * @param pageToken データの取得を開始する位置を指定するトークン
 	 * @return this
 	 */
-	public AcquisitionMyInventoryRequest withItemName(String itemName) {
-		setItemName(itemName);
+	public DescribeItemMasterRequest withPageToken(String pageToken) {
+		setPageToken(pageToken);
 		return this;
 	}
 
 	/**
-	 * 入手数量を取得
+	 * データの取得件数を取得
 	 *
-	 * @return 入手数量
+	 * @return データの取得件数
 	 */
-	public Integer getCount() {
-		return count;
+	public Integer getLimit() {
+		return limit;
 	}
 
 	/**
-	 * 入手数量を設定
+	 * データの取得件数を設定
 	 *
-	 * @param count 入手数量
+	 * @param limit データの取得件数
 	 */
-	public void setCount(Integer count) {
-		this.count = count;
+	public void setLimit(Integer limit) {
+		this.limit = limit;
 	}
 
 	/**
-	 * 入手数量を設定
+	 * データの取得件数を設定
 	 *
-	 * @param count 入手数量
+	 * @param limit データの取得件数
 	 * @return this
 	 */
-	public AcquisitionMyInventoryRequest withCount(Integer count) {
-		setCount(count);
+	public DescribeItemMasterRequest withLimit(Integer limit) {
+		setLimit(limit);
 		return this;
 	}
 

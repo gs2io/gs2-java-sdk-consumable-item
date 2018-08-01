@@ -18,6 +18,7 @@ package io.gs2.consumableItem.control;
 
 import org.json.JSONObject;
 import java.util.List;
+import io.gs2.consumableItem.model.*;
 import io.gs2.consumableItem.Gs2ConsumableItem;
 import io.gs2.control.Gs2UserRequest;
 
@@ -25,20 +26,20 @@ import io.gs2.control.Gs2UserRequest;
  * @author Game Server Services, Inc.
  */
 @SuppressWarnings("serial")
-public class DescribeMyInventoryRequest extends Gs2UserRequest<DescribeMyInventoryRequest> {
+public class AcquisitionItemRequest extends Gs2UserRequest<AcquisitionItemRequest> {
 
 	public static class Constant extends Gs2ConsumableItem.Constant {
-		public static final String FUNCTION = "DescribeMyInventory";
+		public static final String FUNCTION = "AcquisitionItem";
 	}
 
 	/** 消費型アイテムプールの名前 */
 	private String itemPoolName;
 
-	/** データの取得を開始する位置を指定するトークン */
-	private String pageToken;
+	/** 消費型アイテムの名前 */
+	private String itemName;
 
-	/** データの取得件数 */
-	private Integer limit;
+	/** 入手数量 */
+	private Integer count;
 
 
 	/**
@@ -65,66 +66,66 @@ public class DescribeMyInventoryRequest extends Gs2UserRequest<DescribeMyInvento
 	 * @param itemPoolName 消費型アイテムプールの名前
 	 * @return this
 	 */
-	public DescribeMyInventoryRequest withItemPoolName(String itemPoolName) {
+	public AcquisitionItemRequest withItemPoolName(String itemPoolName) {
 		setItemPoolName(itemPoolName);
 		return this;
 	}
 
 	/**
-	 * データの取得を開始する位置を指定するトークンを取得
+	 * 消費型アイテムの名前を取得
 	 *
-	 * @return データの取得を開始する位置を指定するトークン
+	 * @return 消費型アイテムの名前
 	 */
-	public String getPageToken() {
-		return pageToken;
+	public String getItemName() {
+		return itemName;
 	}
 
 	/**
-	 * データの取得を開始する位置を指定するトークンを設定
+	 * 消費型アイテムの名前を設定
 	 *
-	 * @param pageToken データの取得を開始する位置を指定するトークン
+	 * @param itemName 消費型アイテムの名前
 	 */
-	public void setPageToken(String pageToken) {
-		this.pageToken = pageToken;
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
 	}
 
 	/**
-	 * データの取得を開始する位置を指定するトークンを設定
+	 * 消費型アイテムの名前を設定
 	 *
-	 * @param pageToken データの取得を開始する位置を指定するトークン
+	 * @param itemName 消費型アイテムの名前
 	 * @return this
 	 */
-	public DescribeMyInventoryRequest withPageToken(String pageToken) {
-		setPageToken(pageToken);
+	public AcquisitionItemRequest withItemName(String itemName) {
+		setItemName(itemName);
 		return this;
 	}
 
 	/**
-	 * データの取得件数を取得
+	 * 入手数量を取得
 	 *
-	 * @return データの取得件数
+	 * @return 入手数量
 	 */
-	public Integer getLimit() {
-		return limit;
+	public Integer getCount() {
+		return count;
 	}
 
 	/**
-	 * データの取得件数を設定
+	 * 入手数量を設定
 	 *
-	 * @param limit データの取得件数
+	 * @param count 入手数量
 	 */
-	public void setLimit(Integer limit) {
-		this.limit = limit;
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 
 	/**
-	 * データの取得件数を設定
+	 * 入手数量を設定
 	 *
-	 * @param limit データの取得件数
+	 * @param count 入手数量
 	 * @return this
 	 */
-	public DescribeMyInventoryRequest withLimit(Integer limit) {
-		setLimit(limit);
+	public AcquisitionItemRequest withCount(Integer count) {
+		setCount(count);
 		return this;
 	}
 

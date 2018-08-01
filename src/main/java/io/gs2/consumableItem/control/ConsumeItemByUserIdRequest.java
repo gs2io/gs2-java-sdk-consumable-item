@@ -18,6 +18,7 @@ package io.gs2.consumableItem.control;
 
 import org.json.JSONObject;
 import java.util.List;
+import io.gs2.consumableItem.model.*;
 import io.gs2.consumableItem.Gs2ConsumableItem;
 import io.gs2.control.Gs2BasicRequest;
 
@@ -25,10 +26,10 @@ import io.gs2.control.Gs2BasicRequest;
  * @author Game Server Services, Inc.
  */
 @SuppressWarnings("serial")
-public class DeleteInventoryRequest extends Gs2BasicRequest<DeleteInventoryRequest> {
+public class ConsumeItemByUserIdRequest extends Gs2BasicRequest<ConsumeItemByUserIdRequest> {
 
 	public static class Constant extends Gs2ConsumableItem.Constant {
-		public static final String FUNCTION = "DeleteInventory";
+		public static final String FUNCTION = "ConsumeItemByUserId";
 	}
 
 	/** 消費型アイテムプールの名前 */
@@ -39,6 +40,9 @@ public class DeleteInventoryRequest extends Gs2BasicRequest<DeleteInventoryReque
 
 	/** ユーザID */
 	private String userId;
+
+	/** 消費数量 */
+	private Integer count;
 
 
 	/**
@@ -65,7 +69,7 @@ public class DeleteInventoryRequest extends Gs2BasicRequest<DeleteInventoryReque
 	 * @param itemPoolName 消費型アイテムプールの名前
 	 * @return this
 	 */
-	public DeleteInventoryRequest withItemPoolName(String itemPoolName) {
+	public ConsumeItemByUserIdRequest withItemPoolName(String itemPoolName) {
 		setItemPoolName(itemPoolName);
 		return this;
 	}
@@ -94,7 +98,7 @@ public class DeleteInventoryRequest extends Gs2BasicRequest<DeleteInventoryReque
 	 * @param itemName 消費型アイテムの名前
 	 * @return this
 	 */
-	public DeleteInventoryRequest withItemName(String itemName) {
+	public ConsumeItemByUserIdRequest withItemName(String itemName) {
 		setItemName(itemName);
 		return this;
 	}
@@ -123,8 +127,37 @@ public class DeleteInventoryRequest extends Gs2BasicRequest<DeleteInventoryReque
 	 * @param userId ユーザID
 	 * @return this
 	 */
-	public DeleteInventoryRequest withUserId(String userId) {
+	public ConsumeItemByUserIdRequest withUserId(String userId) {
 		setUserId(userId);
+		return this;
+	}
+
+	/**
+	 * 消費数量を取得
+	 *
+	 * @return 消費数量
+	 */
+	public Integer getCount() {
+		return count;
+	}
+
+	/**
+	 * 消費数量を設定
+	 *
+	 * @param count 消費数量
+	 */
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	/**
+	 * 消費数量を設定
+	 *
+	 * @param count 消費数量
+	 * @return this
+	 */
+	public ConsumeItemByUserIdRequest withCount(Integer count) {
+		setCount(count);
 		return this;
 	}
 

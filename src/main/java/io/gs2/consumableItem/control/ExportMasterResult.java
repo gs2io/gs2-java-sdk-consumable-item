@@ -26,27 +26,27 @@ import io.gs2.consumableItem.model.*;
  * @author Game Server Services, Inc.
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class GetInventoryResult {
+public class ExportMasterResult {
 
-	/** 所持品 */
-	private Inventory item;
+	/** エクスポートされたアイテムマスターデータ */
+	private String item;
 
 
 	/**
-	 * 所持品を取得
+	 * エクスポートされたアイテムマスターデータを取得
 	 *
-	 * @return 所持品
+	 * @return エクスポートされたアイテムマスターデータ
 	 */
-	public Inventory getItem() {
+	public String getItem() {
 		return item;
 	}
 
 	/**
-	 * 所持品を設定
+	 * エクスポートされたアイテムマスターデータを設定
 	 *
-	 * @param item 所持品
+	 * @param item エクスポートされたアイテムマスターデータ
 	 */
-	public void setItem(Inventory item) {
+	public void setItem(String item) {
 		this.item = item;
 	}
 

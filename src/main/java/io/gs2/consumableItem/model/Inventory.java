@@ -16,9 +16,13 @@
 
 package io.gs2.consumableItem.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 /**
  * 所持品
@@ -41,6 +45,9 @@ public class Inventory implements Serializable {
 
 	/** 所持数量 */
 	private Integer count;
+
+	/** 最大所持数量 */
+	private Integer max;
 
 	/** 作成日時(エポック秒) */
 	private Integer createAt;
@@ -68,6 +75,17 @@ public class Inventory implements Serializable {
 	}
 
 	/**
+	 * 所持品IDを設定
+	 *
+	 * @param inventoryId 所持品ID
+	 * @return this
+	 */
+	public Inventory withInventoryId(String inventoryId) {
+		this.inventoryId = inventoryId;
+		return this;
+	}
+
+	/**
 	 * ユーザIDを取得
 	 *
 	 * @return ユーザID
@@ -83,6 +101,17 @@ public class Inventory implements Serializable {
 	 */
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	/**
+	 * ユーザIDを設定
+	 *
+	 * @param userId ユーザID
+	 * @return this
+	 */
+	public Inventory withUserId(String userId) {
+		this.userId = userId;
+		return this;
 	}
 
 	/**
@@ -104,6 +133,17 @@ public class Inventory implements Serializable {
 	}
 
 	/**
+	 * 消費型アイテム名を設定
+	 *
+	 * @param itemName 消費型アイテム名
+	 * @return this
+	 */
+	public Inventory withItemName(String itemName) {
+		this.itemName = itemName;
+		return this;
+	}
+
+	/**
 	 * 所持数量を取得
 	 *
 	 * @return 所持数量
@@ -119,6 +159,46 @@ public class Inventory implements Serializable {
 	 */
 	public void setCount(Integer count) {
 		this.count = count;
+	}
+
+	/**
+	 * 所持数量を設定
+	 *
+	 * @param count 所持数量
+	 * @return this
+	 */
+	public Inventory withCount(Integer count) {
+		this.count = count;
+		return this;
+	}
+
+	/**
+	 * 最大所持数量を取得
+	 *
+	 * @return 最大所持数量
+	 */
+	public Integer getMax() {
+		return max;
+	}
+
+	/**
+	 * 最大所持数量を設定
+	 *
+	 * @param max 最大所持数量
+	 */
+	public void setMax(Integer max) {
+		this.max = max;
+	}
+
+	/**
+	 * 最大所持数量を設定
+	 *
+	 * @param max 最大所持数量
+	 * @return this
+	 */
+	public Inventory withMax(Integer max) {
+		this.max = max;
+		return this;
 	}
 
 	/**
@@ -140,6 +220,17 @@ public class Inventory implements Serializable {
 	}
 
 	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 * @return this
+	 */
+	public Inventory withCreateAt(Integer createAt) {
+		this.createAt = createAt;
+		return this;
+	}
+
+	/**
 	 * 最終更新日時(エポック秒)を取得
 	 *
 	 * @return 最終更新日時(エポック秒)
@@ -157,4 +248,30 @@ public class Inventory implements Serializable {
 		this.updateAt = updateAt;
 	}
 
+	/**
+	 * 最終更新日時(エポック秒)を設定
+	 *
+	 * @param updateAt 最終更新日時(エポック秒)
+	 * @return this
+	 */
+	public Inventory withUpdateAt(Integer updateAt) {
+		this.updateAt = updateAt;
+		return this;
+	}
+
+
+    public ObjectNode toJson() {
+
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+
+            .put("inventoryId", this.getInventoryId())
+            .put("userId", this.getUserId())
+            .put("itemName", this.getItemName())
+            .put("count", this.getCount())
+            .put("max", this.getMax())
+            .put("createAt", this.getCreateAt())
+            .put("updateAt", this.getUpdateAt());
+
+        return body;
+    }
 }

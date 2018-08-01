@@ -19,33 +19,34 @@ package io.gs2.consumableItem.control;
 import org.json.JSONObject;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.gs2.model.*;
 import io.gs2.consumableItem.model.*;
 
 /**
  * @author Game Server Services, Inc.
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class CreateItemResult {
+public class AcquisitionItemResult {
 
-	/** 消費型アイテム */
-	private Item item;
+	/** 所持品 */
+	private Inventory item;
 
 
 	/**
-	 * 消費型アイテムを取得
+	 * 所持品を取得
 	 *
-	 * @return 消費型アイテム
+	 * @return 所持品
 	 */
-	public Item getItem() {
+	public Inventory getItem() {
 		return item;
 	}
 
 	/**
-	 * 消費型アイテムを設定
+	 * 所持品を設定
 	 *
-	 * @param item 消費型アイテム
+	 * @param item 所持品
 	 */
-	public void setItem(Item item) {
+	public void setItem(Inventory item) {
 		this.item = item;
 	}
 

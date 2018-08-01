@@ -26,7 +26,7 @@ import io.gs2.consumableItem.model.*;
  * @author Game Server Services, Inc.
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class GetInventoryResult {
+public class AcquisitionItemByStampSheetResult {
 
 	/** 所持品 */
 	private Inventory item;

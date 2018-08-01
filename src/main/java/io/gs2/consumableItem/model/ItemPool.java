@@ -16,9 +16,13 @@
 
 package io.gs2.consumableItem.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 /**
  * 消費型アイテムプール
@@ -46,16 +50,16 @@ public class ItemPool implements Serializable {
 	private String serviceClass;
 
 	/** アイテム入手時 に実行されるGS2-Script */
-	private String acquisitionInventoryTriggerScript;
+	private String acquisitionItemTriggerScript;
 
 	/** アイテム入手完了時 に実行されるGS2-Script */
-	private String acquisitionInventoryDoneTriggerScript;
+	private String acquisitionItemDoneTriggerScript;
 
 	/** アイテム消費時 に実行されるGS2-Script */
-	private String consumeInventoryTriggerScript;
+	private String consumeItemTriggerScript;
 
 	/** アイテム消費完了時 に実行されるGS2-Script */
-	private String consumeInventoryDoneTriggerScript;
+	private String consumeItemDoneTriggerScript;
 
 	/** 作成日時(エポック秒) */
 	private Integer createAt;
@@ -83,6 +87,17 @@ public class ItemPool implements Serializable {
 	}
 
 	/**
+	 * 消費型アイテムプールIDを設定
+	 *
+	 * @param itemPoolId 消費型アイテムプールID
+	 * @return this
+	 */
+	public ItemPool withItemPoolId(String itemPoolId) {
+		this.itemPoolId = itemPoolId;
+		return this;
+	}
+
+	/**
 	 * オーナーIDを取得
 	 *
 	 * @return オーナーID
@@ -98,6 +113,17 @@ public class ItemPool implements Serializable {
 	 */
 	public void setOwnerId(String ownerId) {
 		this.ownerId = ownerId;
+	}
+
+	/**
+	 * オーナーIDを設定
+	 *
+	 * @param ownerId オーナーID
+	 * @return this
+	 */
+	public ItemPool withOwnerId(String ownerId) {
+		this.ownerId = ownerId;
+		return this;
 	}
 
 	/**
@@ -119,6 +145,17 @@ public class ItemPool implements Serializable {
 	}
 
 	/**
+	 * 消費型アイテムプール名を設定
+	 *
+	 * @param name 消費型アイテムプール名
+	 * @return this
+	 */
+	public ItemPool withName(String name) {
+		this.name = name;
+		return this;
+	}
+
+	/**
 	 * 説明文を取得
 	 *
 	 * @return 説明文
@@ -134,6 +171,17 @@ public class ItemPool implements Serializable {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	/**
+	 * 説明文を設定
+	 *
+	 * @param description 説明文
+	 * @return this
+	 */
+	public ItemPool withDescription(String description) {
+		this.description = description;
+		return this;
 	}
 
 	/**
@@ -155,21 +203,43 @@ public class ItemPool implements Serializable {
 	}
 
 	/**
+	 * サービスクラスを設定
+	 *
+	 * @param serviceClass サービスクラス
+	 * @return this
+	 */
+	public ItemPool withServiceClass(String serviceClass) {
+		this.serviceClass = serviceClass;
+		return this;
+	}
+
+	/**
 	 * アイテム入手時 に実行されるGS2-Scriptを取得
 	 *
 	 * @return アイテム入手時 に実行されるGS2-Script
 	 */
-	public String getAcquisitionInventoryTriggerScript() {
-		return acquisitionInventoryTriggerScript;
+	public String getAcquisitionItemTriggerScript() {
+		return acquisitionItemTriggerScript;
 	}
 
 	/**
 	 * アイテム入手時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param acquisitionInventoryTriggerScript アイテム入手時 に実行されるGS2-Script
+	 * @param acquisitionItemTriggerScript アイテム入手時 に実行されるGS2-Script
 	 */
-	public void setAcquisitionInventoryTriggerScript(String acquisitionInventoryTriggerScript) {
-		this.acquisitionInventoryTriggerScript = acquisitionInventoryTriggerScript;
+	public void setAcquisitionItemTriggerScript(String acquisitionItemTriggerScript) {
+		this.acquisitionItemTriggerScript = acquisitionItemTriggerScript;
+	}
+
+	/**
+	 * アイテム入手時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionItemTriggerScript アイテム入手時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public ItemPool withAcquisitionItemTriggerScript(String acquisitionItemTriggerScript) {
+		this.acquisitionItemTriggerScript = acquisitionItemTriggerScript;
+		return this;
 	}
 
 	/**
@@ -177,17 +247,28 @@ public class ItemPool implements Serializable {
 	 *
 	 * @return アイテム入手完了時 に実行されるGS2-Script
 	 */
-	public String getAcquisitionInventoryDoneTriggerScript() {
-		return acquisitionInventoryDoneTriggerScript;
+	public String getAcquisitionItemDoneTriggerScript() {
+		return acquisitionItemDoneTriggerScript;
 	}
 
 	/**
 	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param acquisitionInventoryDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 * @param acquisitionItemDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
 	 */
-	public void setAcquisitionInventoryDoneTriggerScript(String acquisitionInventoryDoneTriggerScript) {
-		this.acquisitionInventoryDoneTriggerScript = acquisitionInventoryDoneTriggerScript;
+	public void setAcquisitionItemDoneTriggerScript(String acquisitionItemDoneTriggerScript) {
+		this.acquisitionItemDoneTriggerScript = acquisitionItemDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム入手完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param acquisitionItemDoneTriggerScript アイテム入手完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public ItemPool withAcquisitionItemDoneTriggerScript(String acquisitionItemDoneTriggerScript) {
+		this.acquisitionItemDoneTriggerScript = acquisitionItemDoneTriggerScript;
+		return this;
 	}
 
 	/**
@@ -195,17 +276,28 @@ public class ItemPool implements Serializable {
 	 *
 	 * @return アイテム消費時 に実行されるGS2-Script
 	 */
-	public String getConsumeInventoryTriggerScript() {
-		return consumeInventoryTriggerScript;
+	public String getConsumeItemTriggerScript() {
+		return consumeItemTriggerScript;
 	}
 
 	/**
 	 * アイテム消費時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param consumeInventoryTriggerScript アイテム消費時 に実行されるGS2-Script
+	 * @param consumeItemTriggerScript アイテム消費時 に実行されるGS2-Script
 	 */
-	public void setConsumeInventoryTriggerScript(String consumeInventoryTriggerScript) {
-		this.consumeInventoryTriggerScript = consumeInventoryTriggerScript;
+	public void setConsumeItemTriggerScript(String consumeItemTriggerScript) {
+		this.consumeItemTriggerScript = consumeItemTriggerScript;
+	}
+
+	/**
+	 * アイテム消費時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param consumeItemTriggerScript アイテム消費時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public ItemPool withConsumeItemTriggerScript(String consumeItemTriggerScript) {
+		this.consumeItemTriggerScript = consumeItemTriggerScript;
+		return this;
 	}
 
 	/**
@@ -213,17 +305,28 @@ public class ItemPool implements Serializable {
 	 *
 	 * @return アイテム消費完了時 に実行されるGS2-Script
 	 */
-	public String getConsumeInventoryDoneTriggerScript() {
-		return consumeInventoryDoneTriggerScript;
+	public String getConsumeItemDoneTriggerScript() {
+		return consumeItemDoneTriggerScript;
 	}
 
 	/**
 	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
 	 *
-	 * @param consumeInventoryDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
+	 * @param consumeItemDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
 	 */
-	public void setConsumeInventoryDoneTriggerScript(String consumeInventoryDoneTriggerScript) {
-		this.consumeInventoryDoneTriggerScript = consumeInventoryDoneTriggerScript;
+	public void setConsumeItemDoneTriggerScript(String consumeItemDoneTriggerScript) {
+		this.consumeItemDoneTriggerScript = consumeItemDoneTriggerScript;
+	}
+
+	/**
+	 * アイテム消費完了時 に実行されるGS2-Scriptを設定
+	 *
+	 * @param consumeItemDoneTriggerScript アイテム消費完了時 に実行されるGS2-Script
+	 * @return this
+	 */
+	public ItemPool withConsumeItemDoneTriggerScript(String consumeItemDoneTriggerScript) {
+		this.consumeItemDoneTriggerScript = consumeItemDoneTriggerScript;
+		return this;
 	}
 
 	/**
@@ -245,6 +348,17 @@ public class ItemPool implements Serializable {
 	}
 
 	/**
+	 * 作成日時(エポック秒)を設定
+	 *
+	 * @param createAt 作成日時(エポック秒)
+	 * @return this
+	 */
+	public ItemPool withCreateAt(Integer createAt) {
+		this.createAt = createAt;
+		return this;
+	}
+
+	/**
 	 * 最終更新日時(エポック秒)を取得
 	 *
 	 * @return 最終更新日時(エポック秒)
@@ -262,4 +376,34 @@ public class ItemPool implements Serializable {
 		this.updateAt = updateAt;
 	}
 
+	/**
+	 * 最終更新日時(エポック秒)を設定
+	 *
+	 * @param updateAt 最終更新日時(エポック秒)
+	 * @return this
+	 */
+	public ItemPool withUpdateAt(Integer updateAt) {
+		this.updateAt = updateAt;
+		return this;
+	}
+
+
+    public ObjectNode toJson() {
+
+		ObjectNode body = JsonNodeFactory.instance.objectNode()
+
+            .put("itemPoolId", this.getItemPoolId())
+            .put("ownerId", this.getOwnerId())
+            .put("name", this.getName())
+            .put("description", this.getDescription())
+            .put("serviceClass", this.getServiceClass())
+            .put("acquisitionItemTriggerScript", this.getAcquisitionItemTriggerScript())
+            .put("acquisitionItemDoneTriggerScript", this.getAcquisitionItemDoneTriggerScript())
+            .put("consumeItemTriggerScript", this.getConsumeItemTriggerScript())
+            .put("consumeItemDoneTriggerScript", this.getConsumeItemDoneTriggerScript())
+            .put("createAt", this.getCreateAt())
+            .put("updateAt", this.getUpdateAt());
+
+        return body;
+    }
 }

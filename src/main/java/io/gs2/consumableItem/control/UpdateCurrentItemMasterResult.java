@@ -19,33 +19,34 @@ package io.gs2.consumableItem.control;
 import org.json.JSONObject;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.gs2.model.*;
 import io.gs2.consumableItem.model.*;
 
 /**
  * @author Game Server Services, Inc.
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class AcquisitionInventoryByStampSheetResult {
+public class UpdateCurrentItemMasterResult {
 
-	/** 所持品 */
-	private Inventory item;
+	/** 現在適用されているアイテムマスターデータ */
+	private String item;
 
 
 	/**
-	 * 所持品を取得
+	 * 現在適用されているアイテムマスターデータを取得
 	 *
-	 * @return 所持品
+	 * @return 現在適用されているアイテムマスターデータ
 	 */
-	public Inventory getItem() {
+	public String getItem() {
 		return item;
 	}
 
 	/**
-	 * 所持品を設定
+	 * 現在適用されているアイテムマスターデータを設定
 	 *
-	 * @param item 所持品
+	 * @param item 現在適用されているアイテムマスターデータ
 	 */
-	public void setItem(Inventory item) {
+	public void setItem(String item) {
 		this.item = item;
 	}
 

@@ -18,6 +18,7 @@ package io.gs2.consumableItem.control;
 
 import org.json.JSONObject;
 import java.util.List;
+import io.gs2.consumableItem.model.*;
 import io.gs2.consumableItem.Gs2ConsumableItem;
 import io.gs2.control.Gs2UserRequest;
 
@@ -25,48 +26,45 @@ import io.gs2.control.Gs2UserRequest;
  * @author Game Server Services, Inc.
  */
 @SuppressWarnings("serial")
-public class ConsumeInventoryByStampTaskRequest extends Gs2UserRequest<ConsumeInventoryByStampTaskRequest> {
+public class AcquisitionItemByStampSheetRequest extends Gs2UserRequest<AcquisitionItemByStampSheetRequest> {
 
 	public static class Constant extends Gs2ConsumableItem.Constant {
-		public static final String FUNCTION = "ConsumeInventoryByStampTask";
+		public static final String FUNCTION = "AcquisitionItemByStampSheet";
 	}
 
-	/** スタンプタスク */
-	private String task;
+	/** スタンプシート */
+	private String sheet;
 
 	/** スタンプの暗号鍵 */
 	private String keyName;
 
-	/** トランザクションID */
-	private String transactionId;
-
 
 	/**
-	 * スタンプタスクを取得
+	 * スタンプシートを取得
 	 *
-	 * @return スタンプタスク
+	 * @return スタンプシート
 	 */
-	public String getTask() {
-		return task;
+	public String getSheet() {
+		return sheet;
 	}
 
 	/**
-	 * スタンプタスクを設定
+	 * スタンプシートを設定
 	 *
-	 * @param task スタンプタスク
+	 * @param sheet スタンプシート
 	 */
-	public void setTask(String task) {
-		this.task = task;
+	public void setSheet(String sheet) {
+		this.sheet = sheet;
 	}
 
 	/**
-	 * スタンプタスクを設定
+	 * スタンプシートを設定
 	 *
-	 * @param task スタンプタスク
+	 * @param sheet スタンプシート
 	 * @return this
 	 */
-	public ConsumeInventoryByStampTaskRequest withTask(String task) {
-		setTask(task);
+	public AcquisitionItemByStampSheetRequest withSheet(String sheet) {
+		setSheet(sheet);
 		return this;
 	}
 
@@ -94,37 +92,8 @@ public class ConsumeInventoryByStampTaskRequest extends Gs2UserRequest<ConsumeIn
 	 * @param keyName スタンプの暗号鍵
 	 * @return this
 	 */
-	public ConsumeInventoryByStampTaskRequest withKeyName(String keyName) {
+	public AcquisitionItemByStampSheetRequest withKeyName(String keyName) {
 		setKeyName(keyName);
-		return this;
-	}
-
-	/**
-	 * トランザクションIDを取得
-	 *
-	 * @return トランザクションID
-	 */
-	public String getTransactionId() {
-		return transactionId;
-	}
-
-	/**
-	 * トランザクションIDを設定
-	 *
-	 * @param transactionId トランザクションID
-	 */
-	public void setTransactionId(String transactionId) {
-		this.transactionId = transactionId;
-	}
-
-	/**
-	 * トランザクションIDを設定
-	 *
-	 * @param transactionId トランザクションID
-	 * @return this
-	 */
-	public ConsumeInventoryByStampTaskRequest withTransactionId(String transactionId) {
-		setTransactionId(transactionId);
 		return this;
 	}
 

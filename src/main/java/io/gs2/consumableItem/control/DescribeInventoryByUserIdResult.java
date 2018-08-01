@@ -19,16 +19,20 @@ package io.gs2.consumableItem.control;
 import org.json.JSONObject;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.gs2.model.*;
 import io.gs2.consumableItem.model.*;
 
 /**
  * @author Game Server Services, Inc.
  */
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class GetMyInventoryResult {
+public class DescribeInventoryByUserIdResult {
 
 	/** 所持品 */
-	private Inventory item;
+	private List<Inventory> items;
+
+	/** 次のページを読み込むためのトークン */
+	private String nextPageToken;
 
 
 	/**
@@ -36,17 +40,35 @@ public class GetMyInventoryResult {
 	 *
 	 * @return 所持品
 	 */
-	public Inventory getItem() {
-		return item;
+	public List<Inventory> getItems() {
+		return items;
 	}
 
 	/**
 	 * 所持品を設定
 	 *
-	 * @param item 所持品
+	 * @param items 所持品
 	 */
-	public void setItem(Inventory item) {
-		this.item = item;
+	public void setItems(List<Inventory> items) {
+		this.items = items;
+	}
+
+	/**
+	 * 次のページを読み込むためのトークンを取得
+	 *
+	 * @return 次のページを読み込むためのトークン
+	 */
+	public String getNextPageToken() {
+		return nextPageToken;
+	}
+
+	/**
+	 * 次のページを読み込むためのトークンを設定
+	 *
+	 * @param nextPageToken 次のページを読み込むためのトークン
+	 */
+	public void setNextPageToken(String nextPageToken) {
+		this.nextPageToken = nextPageToken;
 	}
 
 }

@@ -18,6 +18,7 @@ package io.gs2.consumableItem.control;
 
 import org.json.JSONObject;
 import java.util.List;
+import io.gs2.consumableItem.model.*;
 import io.gs2.consumableItem.Gs2ConsumableItem;
 import io.gs2.control.Gs2UserRequest;
 
@@ -25,48 +26,48 @@ import io.gs2.control.Gs2UserRequest;
  * @author Game Server Services, Inc.
  */
 @SuppressWarnings("serial")
-public class AcquisitionInventoryByStampSheetRequest extends Gs2UserRequest<AcquisitionInventoryByStampSheetRequest> {
+public class ConsumeItemByStampTaskRequest extends Gs2UserRequest<ConsumeItemByStampTaskRequest> {
 
 	public static class Constant extends Gs2ConsumableItem.Constant {
-		public static final String FUNCTION = "AcquisitionInventoryByStampSheet";
+		public static final String FUNCTION = "ConsumeItemByStampTask";
 	}
 
-	/** スタンプシート */
-	private String sheet;
+	/** スタンプタスク */
+	private String task;
 
 	/** スタンプの暗号鍵 */
 	private String keyName;
 
-	/** スタミナの最大値 */
-	private Integer maxValue;
+	/** トランザクションID */
+	private String transactionId;
 
 
 	/**
-	 * スタンプシートを取得
+	 * スタンプタスクを取得
 	 *
-	 * @return スタンプシート
+	 * @return スタンプタスク
 	 */
-	public String getSheet() {
-		return sheet;
+	public String getTask() {
+		return task;
 	}
 
 	/**
-	 * スタンプシートを設定
+	 * スタンプタスクを設定
 	 *
-	 * @param sheet スタンプシート
+	 * @param task スタンプタスク
 	 */
-	public void setSheet(String sheet) {
-		this.sheet = sheet;
+	public void setTask(String task) {
+		this.task = task;
 	}
 
 	/**
-	 * スタンプシートを設定
+	 * スタンプタスクを設定
 	 *
-	 * @param sheet スタンプシート
+	 * @param task スタンプタスク
 	 * @return this
 	 */
-	public AcquisitionInventoryByStampSheetRequest withSheet(String sheet) {
-		setSheet(sheet);
+	public ConsumeItemByStampTaskRequest withTask(String task) {
+		setTask(task);
 		return this;
 	}
 
@@ -94,37 +95,37 @@ public class AcquisitionInventoryByStampSheetRequest extends Gs2UserRequest<Acqu
 	 * @param keyName スタンプの暗号鍵
 	 * @return this
 	 */
-	public AcquisitionInventoryByStampSheetRequest withKeyName(String keyName) {
+	public ConsumeItemByStampTaskRequest withKeyName(String keyName) {
 		setKeyName(keyName);
 		return this;
 	}
 
 	/**
-	 * スタミナの最大値を取得
+	 * トランザクションIDを取得
 	 *
-	 * @return スタミナの最大値
+	 * @return トランザクションID
 	 */
-	public Integer getMaxValue() {
-		return maxValue;
+	public String getTransactionId() {
+		return transactionId;
 	}
 
 	/**
-	 * スタミナの最大値を設定
+	 * トランザクションIDを設定
 	 *
-	 * @param maxValue スタミナの最大値
+	 * @param transactionId トランザクションID
 	 */
-	public void setMaxValue(Integer maxValue) {
-		this.maxValue = maxValue;
+	public void setTransactionId(String transactionId) {
+		this.transactionId = transactionId;
 	}
 
 	/**
-	 * スタミナの最大値を設定
+	 * トランザクションIDを設定
 	 *
-	 * @param maxValue スタミナの最大値
+	 * @param transactionId トランザクションID
 	 * @return this
 	 */
-	public AcquisitionInventoryByStampSheetRequest withMaxValue(Integer maxValue) {
-		setMaxValue(maxValue);
+	public ConsumeItemByStampTaskRequest withTransactionId(String transactionId) {
+		setTransactionId(transactionId);
 		return this;
 	}
 

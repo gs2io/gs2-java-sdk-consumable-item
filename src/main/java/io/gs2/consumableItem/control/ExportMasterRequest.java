@@ -18,6 +18,7 @@ package io.gs2.consumableItem.control;
 
 import org.json.JSONObject;
 import java.util.List;
+import io.gs2.consumableItem.model.*;
 import io.gs2.consumableItem.Gs2ConsumableItem;
 import io.gs2.control.Gs2BasicRequest;
 
@@ -25,74 +26,42 @@ import io.gs2.control.Gs2BasicRequest;
  * @author Game Server Services, Inc.
  */
 @SuppressWarnings("serial")
-public class DeleteItemRequest extends Gs2BasicRequest<DeleteItemRequest> {
+public class ExportMasterRequest extends Gs2BasicRequest<ExportMasterRequest> {
 
 	public static class Constant extends Gs2ConsumableItem.Constant {
-		public static final String FUNCTION = "DeleteItem";
+		public static final String FUNCTION = "ExportMaster";
 	}
 
-	/** 消費型アイテムプールの名前 */
+	/** アイテムプールの名前を指定します。 */
 	private String itemPoolName;
-
-	/** 消費型アイテムの名前 */
-	private String itemName;
 
 
 	/**
-	 * 消費型アイテムプールの名前を取得
+	 * アイテムプールの名前を指定します。を取得
 	 *
-	 * @return 消費型アイテムプールの名前
+	 * @return アイテムプールの名前を指定します。
 	 */
 	public String getItemPoolName() {
 		return itemPoolName;
 	}
 
 	/**
-	 * 消費型アイテムプールの名前を設定
+	 * アイテムプールの名前を指定します。を設定
 	 *
-	 * @param itemPoolName 消費型アイテムプールの名前
+	 * @param itemPoolName アイテムプールの名前を指定します。
 	 */
 	public void setItemPoolName(String itemPoolName) {
 		this.itemPoolName = itemPoolName;
 	}
 
 	/**
-	 * 消費型アイテムプールの名前を設定
+	 * アイテムプールの名前を指定します。を設定
 	 *
-	 * @param itemPoolName 消費型アイテムプールの名前
+	 * @param itemPoolName アイテムプールの名前を指定します。
 	 * @return this
 	 */
-	public DeleteItemRequest withItemPoolName(String itemPoolName) {
+	public ExportMasterRequest withItemPoolName(String itemPoolName) {
 		setItemPoolName(itemPoolName);
-		return this;
-	}
-
-	/**
-	 * 消費型アイテムの名前を取得
-	 *
-	 * @return 消費型アイテムの名前
-	 */
-	public String getItemName() {
-		return itemName;
-	}
-
-	/**
-	 * 消費型アイテムの名前を設定
-	 *
-	 * @param itemName 消費型アイテムの名前
-	 */
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
-
-	/**
-	 * 消費型アイテムの名前を設定
-	 *
-	 * @param itemName 消費型アイテムの名前
-	 * @return this
-	 */
-	public DeleteItemRequest withItemName(String itemName) {
-		setItemName(itemName);
 		return this;
 	}
 

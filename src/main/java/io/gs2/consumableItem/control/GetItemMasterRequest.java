@@ -26,42 +26,74 @@ import io.gs2.control.Gs2BasicRequest;
  * @author Game Server Services, Inc.
  */
 @SuppressWarnings("serial")
-public class GetItemPoolRequest extends Gs2BasicRequest<GetItemPoolRequest> {
+public class GetItemMasterRequest extends Gs2BasicRequest<GetItemMasterRequest> {
 
 	public static class Constant extends Gs2ConsumableItem.Constant {
-		public static final String FUNCTION = "GetItemPool";
+		public static final String FUNCTION = "GetItemMaster";
 	}
 
-	/** 取得する消費型アイテムプールの名前 */
+	/** 仮想通貨の名前 */
 	private String itemPoolName;
+
+	/** 商品の名前 */
+	private String itemName;
 
 
 	/**
-	 * 取得する消費型アイテムプールの名前を取得
+	 * 仮想通貨の名前を取得
 	 *
-	 * @return 取得する消費型アイテムプールの名前
+	 * @return 仮想通貨の名前
 	 */
 	public String getItemPoolName() {
 		return itemPoolName;
 	}
 
 	/**
-	 * 取得する消費型アイテムプールの名前を設定
+	 * 仮想通貨の名前を設定
 	 *
-	 * @param itemPoolName 取得する消費型アイテムプールの名前
+	 * @param itemPoolName 仮想通貨の名前
 	 */
 	public void setItemPoolName(String itemPoolName) {
 		this.itemPoolName = itemPoolName;
 	}
 
 	/**
-	 * 取得する消費型アイテムプールの名前を設定
+	 * 仮想通貨の名前を設定
 	 *
-	 * @param itemPoolName 取得する消費型アイテムプールの名前
+	 * @param itemPoolName 仮想通貨の名前
 	 * @return this
 	 */
-	public GetItemPoolRequest withItemPoolName(String itemPoolName) {
+	public GetItemMasterRequest withItemPoolName(String itemPoolName) {
 		setItemPoolName(itemPoolName);
+		return this;
+	}
+
+	/**
+	 * 商品の名前を取得
+	 *
+	 * @return 商品の名前
+	 */
+	public String getItemName() {
+		return itemName;
+	}
+
+	/**
+	 * 商品の名前を設定
+	 *
+	 * @param itemName 商品の名前
+	 */
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	/**
+	 * 商品の名前を設定
+	 *
+	 * @param itemName 商品の名前
+	 * @return this
+	 */
+	public GetItemMasterRequest withItemName(String itemName) {
+		setItemName(itemName);
 		return this;
 	}
 

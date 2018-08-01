@@ -18,6 +18,7 @@ package io.gs2.consumableItem.control;
 
 import org.json.JSONObject;
 import java.util.List;
+import io.gs2.consumableItem.model.*;
 import io.gs2.consumableItem.Gs2ConsumableItem;
 import io.gs2.control.Gs2BasicRequest;
 
@@ -25,10 +26,10 @@ import io.gs2.control.Gs2BasicRequest;
  * @author Game Server Services, Inc.
  */
 @SuppressWarnings("serial")
-public class ConsumeInventoryRequest extends Gs2BasicRequest<ConsumeInventoryRequest> {
+public class AcquisitionItemByUserIdRequest extends Gs2BasicRequest<AcquisitionItemByUserIdRequest> {
 
 	public static class Constant extends Gs2ConsumableItem.Constant {
-		public static final String FUNCTION = "ConsumeInventory";
+		public static final String FUNCTION = "AcquisitionItemByUserId";
 	}
 
 	/** 消費型アイテムプールの名前 */
@@ -40,7 +41,7 @@ public class ConsumeInventoryRequest extends Gs2BasicRequest<ConsumeInventoryReq
 	/** ユーザID */
 	private String userId;
 
-	/** 消費数量 */
+	/** 入手数量 */
 	private Integer count;
 
 
@@ -68,7 +69,7 @@ public class ConsumeInventoryRequest extends Gs2BasicRequest<ConsumeInventoryReq
 	 * @param itemPoolName 消費型アイテムプールの名前
 	 * @return this
 	 */
-	public ConsumeInventoryRequest withItemPoolName(String itemPoolName) {
+	public AcquisitionItemByUserIdRequest withItemPoolName(String itemPoolName) {
 		setItemPoolName(itemPoolName);
 		return this;
 	}
@@ -97,7 +98,7 @@ public class ConsumeInventoryRequest extends Gs2BasicRequest<ConsumeInventoryReq
 	 * @param itemName 消費型アイテムの名前
 	 * @return this
 	 */
-	public ConsumeInventoryRequest withItemName(String itemName) {
+	public AcquisitionItemByUserIdRequest withItemName(String itemName) {
 		setItemName(itemName);
 		return this;
 	}
@@ -126,36 +127,36 @@ public class ConsumeInventoryRequest extends Gs2BasicRequest<ConsumeInventoryReq
 	 * @param userId ユーザID
 	 * @return this
 	 */
-	public ConsumeInventoryRequest withUserId(String userId) {
+	public AcquisitionItemByUserIdRequest withUserId(String userId) {
 		setUserId(userId);
 		return this;
 	}
 
 	/**
-	 * 消費数量を取得
+	 * 入手数量を取得
 	 *
-	 * @return 消費数量
+	 * @return 入手数量
 	 */
 	public Integer getCount() {
 		return count;
 	}
 
 	/**
-	 * 消費数量を設定
+	 * 入手数量を設定
 	 *
-	 * @param count 消費数量
+	 * @param count 入手数量
 	 */
 	public void setCount(Integer count) {
 		this.count = count;
 	}
 
 	/**
-	 * 消費数量を設定
+	 * 入手数量を設定
 	 *
-	 * @param count 消費数量
+	 * @param count 入手数量
 	 * @return this
 	 */
-	public ConsumeInventoryRequest withCount(Integer count) {
+	public AcquisitionItemByUserIdRequest withCount(Integer count) {
 		setCount(count);
 		return this;
 	}
