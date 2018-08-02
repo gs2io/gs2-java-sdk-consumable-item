@@ -44,6 +44,9 @@ public class AcquisitionItemByUserIdRequest extends Gs2BasicRequest<AcquisitionI
 	/** 入手数量 */
 	private Integer count;
 
+	/** 有効期限(エポック秒) */
+	private Integer expireAt;
+
 
 	/**
 	 * 消費型アイテムプールの名前を取得
@@ -158,6 +161,35 @@ public class AcquisitionItemByUserIdRequest extends Gs2BasicRequest<AcquisitionI
 	 */
 	public AcquisitionItemByUserIdRequest withCount(Integer count) {
 		setCount(count);
+		return this;
+	}
+
+	/**
+	 * 有効期限(エポック秒)を取得
+	 *
+	 * @return 有効期限(エポック秒)
+	 */
+	public Integer getExpireAt() {
+		return expireAt;
+	}
+
+	/**
+	 * 有効期限(エポック秒)を設定
+	 *
+	 * @param expireAt 有効期限(エポック秒)
+	 */
+	public void setExpireAt(Integer expireAt) {
+		this.expireAt = expireAt;
+	}
+
+	/**
+	 * 有効期限(エポック秒)を設定
+	 *
+	 * @param expireAt 有効期限(エポック秒)
+	 * @return this
+	 */
+	public AcquisitionItemByUserIdRequest withExpireAt(Integer expireAt) {
+		setExpireAt(expireAt);
 		return this;
 	}
 

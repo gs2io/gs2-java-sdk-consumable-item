@@ -38,6 +38,9 @@ public class GetInventoryRequest extends Gs2UserRequest<GetInventoryRequest> {
 	/** 消費型アイテムの名前 */
 	private String itemName;
 
+	/** 有効期限(エポック秒) */
+	private Integer expireAt;
+
 
 	/**
 	 * 消費型アイテムプールの名前を取得
@@ -94,6 +97,35 @@ public class GetInventoryRequest extends Gs2UserRequest<GetInventoryRequest> {
 	 */
 	public GetInventoryRequest withItemName(String itemName) {
 		setItemName(itemName);
+		return this;
+	}
+
+	/**
+	 * 有効期限(エポック秒)を取得
+	 *
+	 * @return 有効期限(エポック秒)
+	 */
+	public Integer getExpireAt() {
+		return expireAt;
+	}
+
+	/**
+	 * 有効期限(エポック秒)を設定
+	 *
+	 * @param expireAt 有効期限(エポック秒)
+	 */
+	public void setExpireAt(Integer expireAt) {
+		this.expireAt = expireAt;
+	}
+
+	/**
+	 * 有効期限(エポック秒)を設定
+	 *
+	 * @param expireAt 有効期限(エポック秒)
+	 * @return this
+	 */
+	public GetInventoryRequest withExpireAt(Integer expireAt) {
+		setExpireAt(expireAt);
 		return this;
 	}
 

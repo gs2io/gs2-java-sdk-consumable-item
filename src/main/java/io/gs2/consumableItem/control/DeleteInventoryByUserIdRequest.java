@@ -41,6 +41,9 @@ public class DeleteInventoryByUserIdRequest extends Gs2BasicRequest<DeleteInvent
 	/** ユーザID */
 	private String userId;
 
+	/** 有効期限 */
+	private Integer expireAt;
+
 
 	/**
 	 * 消費型アイテムプールの名前を取得
@@ -126,6 +129,35 @@ public class DeleteInventoryByUserIdRequest extends Gs2BasicRequest<DeleteInvent
 	 */
 	public DeleteInventoryByUserIdRequest withUserId(String userId) {
 		setUserId(userId);
+		return this;
+	}
+
+	/**
+	 * 有効期限を取得
+	 *
+	 * @return 有効期限
+	 */
+	public Integer getExpireAt() {
+		return expireAt;
+	}
+
+	/**
+	 * 有効期限を設定
+	 *
+	 * @param expireAt 有効期限
+	 */
+	public void setExpireAt(Integer expireAt) {
+		this.expireAt = expireAt;
+	}
+
+	/**
+	 * 有効期限を設定
+	 *
+	 * @param expireAt 有効期限
+	 * @return this
+	 */
+	public DeleteInventoryByUserIdRequest withExpireAt(Integer expireAt) {
+		setExpireAt(expireAt);
 		return this;
 	}
 

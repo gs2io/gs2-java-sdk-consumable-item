@@ -46,8 +46,11 @@ public class Inventory implements Serializable {
 	/** 所持数量 */
 	private Integer count;
 
-	/** 最大所持数量 */
+	/** 最大所持可能数量 */
 	private Integer max;
+
+	/** 有効期限(エポック秒) */
+	private Integer expireAt;
 
 	/** 作成日時(エポック秒) */
 	private Integer createAt;
@@ -173,31 +176,60 @@ public class Inventory implements Serializable {
 	}
 
 	/**
-	 * 最大所持数量を取得
+	 * 最大所持可能数量を取得
 	 *
-	 * @return 最大所持数量
+	 * @return 最大所持可能数量
 	 */
 	public Integer getMax() {
 		return max;
 	}
 
 	/**
-	 * 最大所持数量を設定
+	 * 最大所持可能数量を設定
 	 *
-	 * @param max 最大所持数量
+	 * @param max 最大所持可能数量
 	 */
 	public void setMax(Integer max) {
 		this.max = max;
 	}
 
 	/**
-	 * 最大所持数量を設定
+	 * 最大所持可能数量を設定
 	 *
-	 * @param max 最大所持数量
+	 * @param max 最大所持可能数量
 	 * @return this
 	 */
 	public Inventory withMax(Integer max) {
 		this.max = max;
+		return this;
+	}
+
+	/**
+	 * 有効期限(エポック秒)を取得
+	 *
+	 * @return 有効期限(エポック秒)
+	 */
+	public Integer getExpireAt() {
+		return expireAt;
+	}
+
+	/**
+	 * 有効期限(エポック秒)を設定
+	 *
+	 * @param expireAt 有効期限(エポック秒)
+	 */
+	public void setExpireAt(Integer expireAt) {
+		this.expireAt = expireAt;
+	}
+
+	/**
+	 * 有効期限(エポック秒)を設定
+	 *
+	 * @param expireAt 有効期限(エポック秒)
+	 * @return this
+	 */
+	public Inventory withExpireAt(Integer expireAt) {
+		this.expireAt = expireAt;
 		return this;
 	}
 
@@ -269,6 +301,7 @@ public class Inventory implements Serializable {
             .put("itemName", this.getItemName())
             .put("count", this.getCount())
             .put("max", this.getMax())
+            .put("expireAt", this.getExpireAt())
             .put("createAt", this.getCreateAt())
             .put("updateAt", this.getUpdateAt());
 

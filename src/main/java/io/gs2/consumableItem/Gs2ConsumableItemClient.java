@@ -146,11 +146,12 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	/**
 	 * インベントリにアイテムを加えます<br>
 	 * <br>
+	 * 有効期限に 0 を設定すると有効期限無しになります。<br>
+	 * <br>
 	 * アイテムに所持数の上限が設定されている状態で、複数個付与することによって<br>
 	 * 所持数の上限を超えてしまうケースでは一切付与せずエラー応答を返します。<br>
 	 * <br>
-	 * 例えば、所持数上限 10 のアイテムで、8個所持しているユーザに 3個 付与しようとすると<br>
-	 * 1個も付与せずにエラーを返します。<br>
+	 * 例えば、所持数上限 10 のアイテムで、8個所持しているユーザに 3個 付与しようとすると1個も付与せずにエラーを返します。<br>
 	 * <br>
 	 *
 	 * @param request リクエストパラメータ
@@ -163,6 +164,7 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
 				.put("count", request.getCount());
+        if(request.getExpireAt() != null) body.put("expireAt", request.getExpireAt());
 
 		HttpPost post = createHttpPost(
 				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/inventory/user/my/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "",
@@ -219,6 +221,8 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	/**
 	 * インベントリにアイテムを加えます<br>
 	 * <br>
+	 * 有効期限に 0 を設定すると有効期限無しになります。<br>
+	 * <br>
 	 * アイテムに所持数の上限が設定されている状態で、複数個付与することによって<br>
 	 * 所持数の上限を超えてしまうケースでは一切付与せずエラー応答を返します。<br>
 	 * <br>
@@ -236,6 +240,7 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
 				.put("count", request.getCount());
+        if(request.getExpireAt() != null) body.put("expireAt", request.getExpireAt());
 
 		HttpPost post = createHttpPost(
 				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/inventory/user/" + (request.getUserId() == null || request.getUserId().equals("") ? "null" : request.getUserId()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "",
@@ -257,6 +262,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	/**
 	 * インベントリのアイテムを消費します<br>
 	 * <br>
+	 * expireAt を指定しない場合は有効期限内の所有するアイテムの中から有効期限の近いアイテムから消費します。<br>
+	 * ただし、この場合有効期限内の所有するアイテムの数量倍クォーターを消費します。<br>
+	 * <br>
 	 *
 	 * @param request リクエストパラメータ
 
@@ -268,6 +276,7 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
 				.put("count", request.getCount());
+        if(request.getExpireAt() != null) body.put("expireAt", request.getExpireAt());
 		HttpPut put = createHttpPut(
 				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/inventory/user/my/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "",
 				credential,
@@ -323,6 +332,9 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	/**
 	 * インベントリのアイテムを消費します<br>
 	 * <br>
+	 * expireAt を指定しない場合は有効期限内の所有するアイテムの中から有効期限の近いアイテムから消費します。<br>
+	 * ただし、この場合クォーターを有効期限内の所有するアイテムの数量倍消費します。<br>
+	 * <br>
 	 *
 	 * @param request リクエストパラメータ
 
@@ -334,6 +346,7 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 		ObjectNode body = JsonNodeFactory.instance.objectNode()
 				.put("count", request.getCount());
+        if(request.getExpireAt() != null) body.put("expireAt", request.getExpireAt());
 		HttpPut put = createHttpPut(
 				Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/inventory/user/" + (request.getUserId() == null || request.getUserId().equals("") ? "null" : request.getUserId()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "",
 				credential,
@@ -361,7 +374,7 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 	public void deleteInventoryByUserId(DeleteInventoryByUserIdRequest request) {
 
-	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/inventory/user/" + (request.getUserId() == null || request.getUserId().equals("") ? "null" : request.getUserId()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "";
+	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/inventory/user/" + (request.getUserId() == null || request.getUserId().equals("") ? "null" : request.getUserId()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "/" + (request.getExpireAt() == null || request.getExpireAt().equals("") ? "null" : request.getExpireAt()) + "";
 
 
 
@@ -461,6 +474,14 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	/**
 	 * インベントリの内容を取得します<br>
 	 * <br>
+	 * expireAt を指定しない場合は有効期限内の所有するアイテムの数量を丸めて応答します。<br>
+	 * 有効期限には0が設定されて応答されますので、有効期限が存在するかどうかを判別することもできなくなります。<br>
+	 * <br>
+	 * また、expireAt を指定しない場合は処理時間が expireAt を指定しない場合を指定する場合と比較して長くなります。<br>
+	 * 全ての消費型アイテムが有効期限を持たないアイテムで構成される場合は、有効期限に0を設定すると有効期限の無いアイテムとして管理されますので、そちらを利用してください。<br>
+	 * <br>
+	 * expireAt を指定しない場合は有効期限内の所有するアイテムの数量倍クォーターを消費します。<br>
+	 * <br>
 	 *
 	 * @param request リクエストパラメータ
 
@@ -472,8 +493,13 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/inventory/user/my/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "";
 
+        List<NameValuePair> queryString = new ArrayList<>();
+        if(request.getExpireAt() != null) queryString.add(new BasicNameValuePair("expireAt", String.valueOf(request.getExpireAt())));
 
 
+		if(queryString.size() > 0) {
+			url += "?" + URLEncodedUtils.format(queryString, "UTF-8");
+		}
 		HttpGet get = createHttpGet(
 				url,
 				credential,
@@ -494,6 +520,14 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 	/**
 	 * インベントリの内容を取得します<br>
 	 * <br>
+	 * expireAt を指定しない場合は有効期限内の所有するアイテムの数量を丸めて応答します。<br>
+	 * 有効期限には0が設定されて応答されますので、有効期限が存在するかどうかを判別することもできなくなります。<br>
+	 * <br>
+	 * また、expireAt を指定しない場合は処理時間が expireAt を指定しない場合を指定する場合と比較して長くなります。<br>
+	 * 全ての消費型アイテムが有効期限を持たないアイテムで構成される場合は、有効期限に0を設定すると有効期限の無いアイテムとして管理されますので、そちらを利用してください。<br>
+	 * <br>
+	 * expireAt を指定しない場合は有効期限内の所有するアイテムの数量倍クォーターを消費します。<br>
+	 * <br>
 	 *
 	 * @param request リクエストパラメータ
 
@@ -505,8 +539,13 @@ public class Gs2ConsumableItemClient extends AbstractGs2Client<Gs2ConsumableItem
 
 	    String url = Gs2Constant.ENDPOINT_HOST + "/itemPool/" + (request.getItemPoolName() == null || request.getItemPoolName().equals("") ? "null" : request.getItemPoolName()) + "/inventory/user/" + (request.getUserId() == null || request.getUserId().equals("") ? "null" : request.getUserId()) + "/item/" + (request.getItemName() == null || request.getItemName().equals("") ? "null" : request.getItemName()) + "";
 
+        List<NameValuePair> queryString = new ArrayList<>();
+        if(request.getExpireAt() != null) queryString.add(new BasicNameValuePair("expireAt", String.valueOf(request.getExpireAt())));
 
 
+		if(queryString.size() > 0) {
+			url += "?" + URLEncodedUtils.format(queryString, "UTF-8");
+		}
 		HttpGet get = createHttpGet(
 				url,
 				credential,
